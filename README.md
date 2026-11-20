@@ -4,6 +4,8 @@ Hebrew letters game for kids (ages 3–8). Installable offline PWA, plus an Andr
 
 Live: https://ravivh.com/alfi/
 
+Want to help? See [CONTRIBUTING.md](CONTRIBUTING.md).
+
 ## Layout
 
 | Folder | What |
