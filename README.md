@@ -16,7 +16,9 @@ Want to help? See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Deploying the web app
 
-Push to `main`. Within about 10–15 minutes, the **Sync alfi** workflow in [ravivhi/guessingGame](https://github.com/ravivhi/guessingGame) pulls `web/` into its `alfi/` folder, and its GitHub Pages serves ravivh.com. To sync immediately, the owner can click **Run workflow** on [that workflow](https://github.com/ravivhi/guessingGame/actions/workflows/sync-alfi.yml).
+Pushing to `main` does **not** publish anything by itself. The owner reviews the changes and then clicks **Run workflow** on [Sync alfi](https://github.com/ravivhi/guessingGame/actions/workflows/sync-alfi.yml) in [ravivhi/guessingGame](https://github.com/ravivhi/guessingGame). That pulls `web/` into its `alfi/` folder, and its GitHub Pages serves ravivh.com, live within a couple of minutes.
+
+Before publishing, check what changed since the last sync: the latest "alfi: sync ravivhi/alfi@<sha>" commit in guessingGame names the alfi commit it was synced from.
 
 This repo deliberately has no credentials for guessingGame, so collaborators here can only change the alfi game.
 

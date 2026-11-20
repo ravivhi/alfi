@@ -1,6 +1,6 @@
 # Contributing to אלפי
 
-Thanks for helping! Anything that lands on `main` goes live at https://ravivh.com/alfi/ and in the Android app automatically within about 10–15 minutes, so **test before you push**.
+Thanks for helping! Changes on `main` are **not** live right away: the owner reviews them and then publishes to https://ravivh.com/alfi/ and the Android app. Please still **test before you push**, so `main` always stays in a releasable state.
 
 ## How to contribute
 
@@ -17,7 +17,7 @@ Thanks for helping! Anything that lands on `main` goes live at https://ravivh.co
    ```
    Open the printed URL. Check on a phone-sized window too (DevTools → device toolbar).
 4. Open a **Pull Request** to `main` describing what changed and why.
-5. After review and merge, it goes live automatically within about 10–15 minutes.
+5. After merge, it goes live the next time the owner publishes.
 
 ## Where things are
 
