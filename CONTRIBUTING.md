@@ -1,10 +1,14 @@
 # Contributing to אלפי
 
-Thanks for helping! Changes reach players through pull requests: once a PR is merged into `main`, it goes live at https://ravivh.com/alfi/ and in the Android app automatically.
+Thanks for helping! Anything that lands on `main` goes live at https://ravivh.com/alfi/ and in the Android app automatically within 1–2 minutes, so **test before you push**.
 
 ## How to contribute
 
-1. **Fork** this repo (or, if you're a collaborator, create a branch; direct pushes to `main` are blocked).
+**Collaborators** (added to the repo): push directly to `main`. Test locally first (step 3 below). For bigger changes, a branch + pull request is still welcome.
+
+**Everyone else:**
+
+1. **Fork** this repo.
 2. Make your changes in `web/`.
 3. Test locally:
    ```
