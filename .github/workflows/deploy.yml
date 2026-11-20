@@ -1,7 +1,8 @@
 # Publishes web/ to https://ravivh.com/alfi/
 # ravivh.com is GitHub Pages of ravivhi/guessingGame, so this copies web/ into
 # guessingGame/alfi/ and pushes. Auth: deploy key (write) on guessingGame,
-# private half stored here as secret GUESSINGGAME_DEPLOY_KEY.
+# private half stored as secret GUESSINGGAME_DEPLOY_KEY in the `production`
+# environment (restricted to the main branch).
 name: Deploy to ravivh.com/alfi
 
 on:
@@ -17,6 +18,9 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    # The deploy key secret lives only in this environment, which only `main` may use,
+    # so workflows on other branches or PRs can't read it.
+    environment: production
     steps:
       - uses: actions/checkout@v4
         with:
