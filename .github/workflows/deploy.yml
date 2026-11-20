@@ -1,0 +1,45 @@
+# Publishes web/ to https://ravivh.com/alfi/
+# ravivh.com is GitHub Pages of ravivhi/guessingGame, so this copies web/ into
+# guessingGame/alfi/ and pushes. Auth: deploy key (write) on guessingGame,
+# private half stored here as secret GUESSINGGAME_DEPLOY_KEY.
+name: Deploy to ravivh.com/alfi
+
+on:
+  push:
+    branches: [main]
+    paths: ['web/**', '.github/workflows/deploy.yml']
+  workflow_dispatch:
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: alfi
+
+      - uses: actions/checkout@v4
+        with:
+          repository: ravivhi/guessingGame
+          ssh-key: ${{ secrets.GUESSINGGAME_DEPLOY_KEY }}
+          path: site
+
+      - name: Copy web/ into site/alfi/
+        run: rsync -a --delete alfi/web/ site/alfi/
+
+      - name: Commit and push if changed
+        working-directory: site
+        run: |
+          git add -A alfi
+          if git diff --cached --quiet; then
+            echo "No changes to deploy."
+            exit 0
+          fi
+          git config user.name "alfi-deploy[bot]"
+          git config user.email "actions@users.noreply.github.com"
+          git commit -m "alfi: deploy ravivhi/alfi@${GITHUB_SHA::7}" -m "${{ github.event.head_commit.message }}"
+          git push
