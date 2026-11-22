@@ -1,2 +1,3 @@
 android/gradlew text eol=lf
 *.bat text eol=crlf
+android/twa-manifest.json text eol=lf
