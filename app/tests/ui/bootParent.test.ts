@@ -8,10 +8,14 @@ import type { StepModule } from '../../src/steps/contract.ts';
 import type { StepResult } from '../../src/engine/types.ts';
 import { SLICE_STEPS } from '../../src/engine/profiles.ts';
 
-function boot(n: number, registry?: Record<string, StepModule>) {
+// the image decoding (canvas) has no test DOM: a picked file reads as this photo
+const NEW_PHOTO = 'data:image/jpeg;base64,TkVXLVBIT1RP';
+vi.mock('../../src/platform/photo.ts', () => ({ PHOTO_SIZE: 256, readPhoto: async () => NEW_PHOTO }));
+
+function boot(n: number, registry?: Record<string, StepModule>, photo: string | null = null) {
   const kv = memoryKV();
   const save = freshSave();
-  for (let i = 0; i < n; i++) save.children.push(newChild('ילד' + i, 4, null, '2026-11-21', 'c' + i));
+  for (let i = 0; i < n; i++) save.children.push(newChild('ילד' + i, 4, photo, '2026-11-21', 'c' + i));
   saveNow(kv, save, 0, 1);
   const root = document.createElement('div');
   const clock = { now: () => Date.UTC(2026, 10, 21, 9), today: () => '2026-11-21' };
@@ -80,5 +84,23 @@ describe('parent page in the app', () => {
     (root.querySelector('[data-hold-confirm]') as HTMLElement).dispatchEvent(new Event('pointerdown'));
     vi.advanceTimersByTime(3000);
     expect(router.current()).toBe('map'); // one child left: straight to its map
+  });
+  it('a new picture from the parent page replaces the old one in storage, and the map header shows it', async () => {
+    vi.useFakeTimers();
+    const OLD = 'data:image/jpeg;base64,T0xELVBIT1RP';
+    const { router, root, kv } = boot(1, undefined, OLD);
+    const mapPhoto = () => (root.querySelector('[aria-label="לחיצה ארוכה: עמוד ההורים"] img') as HTMLImageElement).getAttribute('src');
+    expect(mapPhoto()).toBe(OLD);
+    openParent(root);
+    const input = root.querySelector('input[data-photo-file]') as HTMLInputElement;
+    Object.defineProperty(input, 'files', { configurable: true, value: [new File(['x'], 'kid.jpg', { type: 'image/jpeg' })] });
+    input.dispatchEvent(new Event('change'));
+    await vi.advanceTimersByTimeAsync(0);
+    // stored: the new photo, and the old one is nowhere in the storage any more
+    expect(loadSave(kv, null, 0).data.children[0].photo).toBe(NEW_PHOTO);
+    expect(kv.keys().map(k => kv.get(k) ?? '').join('')).not.toContain(OLD);
+    (root.querySelector('[data-parent=close]') as HTMLElement).click();
+    expect(router.current()).toBe('map');
+    expect(mapPhoto()).toBe(NEW_PHOTO);
   });
 });

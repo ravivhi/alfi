@@ -5,6 +5,7 @@
 // costs one and restarts the dino on its trail 2 s back; at none the step fails (owner 2026-11-21: "like the old app").
 // Every loss is a motor slip, never an answer. A letter is evidence only when the child tapped within ACTIVE_SEC.
 // "Try again" from the failed window starts the level where the hearts ran out (ctx.resume, owner 2026-11-21).
+// Each level has its own landscape: the volcano valley, then a desert, then snow (themeForLevel, owner 2026-11-22).
 import type { StepContext, StepModule } from './contract.ts';
 import type { AnswerEvent, StepResult } from '../engine/types.ts';
 import type { JumpLevel } from '../engine/profiles.ts';
@@ -44,6 +45,17 @@ const CATCH_X = 38, CATCH_Y = 50;  // old
 const BUMP_X = 26, BUMP_Y = 34;    // old
 const FALL = 70;                   // old: below GY + 70 a fall is a fall
 const STEP_SEC = 1 / 60;
+/** The old pit draw: every level's pits are drawn 80-105 wide (old LV build). */
+const PIT_DRAW: readonly [number, number] = [80, 105];
+/**
+ * Owner 2026-11-22 (preview 0.7): "in the dino, make the wide lava pits narrower". The widest third of the draw
+ * (97-105, 9 of its 26 widths) becomes the narrowest pit, 80: about 30% narrower would be 68-74, narrower than the
+ * narrow pits, so they stop at the narrowest width (17-24% narrower). The draw itself is unchanged, so every level
+ * keeps its course. Exported for the tests.
+ */
+export const PIT_MIN_W: number = PIT_DRAW[0];
+const PIT_WIDE_FROM = 97;
+export const PIT_MAX_W: number = PIT_WIDE_FROM - 1;
 const INK = '#0D2A5C';
 
 // ---- the pure level
@@ -119,7 +131,8 @@ export function buildLevel(lv: JumpLevel, rng: Rng): Level {
       x += rng.int(230, 270);
     } else if (k === 'pit') {
       close(x);
-      const w = rng.int(80, 105);
+      const drawn = rng.int(PIT_DRAW[0], PIT_DRAW[1]);
+      const w = drawn >= PIT_WIDE_FROM ? PIT_MIN_W : drawn;
       L.pits.push({ x0: x, x1: x + w });
       x += w;
       gx0 = x;
@@ -172,17 +185,86 @@ export function moveAhead(L: Level, item: LevelItem, heroX: number): void {
 const svgUrl = (w: number, hh: number, inner: string): string =>
   `url("data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${hh}" viewBox="0 0 ${w} ${hh}" preserveAspectRatio="none">${inner}</svg>`)}")`;
 const HILL_P = Math.round(2 * Math.PI * 170 * 100) / 100; // one period of the old hills' sine
-const VOLCANO_BG = svgUrl(600, 130, '<path d="M120 130 L182 34 Q200 22 218 34 L280 130Z" fill="#8D6E63"/><path d="M182 34 Q200 22 218 34 L210 46 Q200 40 190 46Z" fill="#FF7043"/><circle cx="196" cy="12" r="9" fill="#BCAAA4" opacity="0.8"/><circle cx="210" cy="4" r="6" fill="#BCAAA4" opacity="0.6"/>');
-const HILLS_BG = (() => {
+/** One period of the old hills' sine band (HILL_P x 100) in a theme's colour. */
+const hillsBg = (fill: string, stroke = ''): string => {
   let d = 'M0 100';
   for (let x = 0; x <= HILL_P + 10; x += 10) d += `L${Math.min(x, HILL_P).toFixed(1)} ${(26 - 26 * (0.5 + 0.5 * Math.sin(Math.min(x, HILL_P) / 170))).toFixed(1)}`;
-  return svgUrl(HILL_P, 100, `<path d="${d}L${HILL_P} 100Z" fill="#A1887F"/>`);
-})();
-const PLANTS_BG = svgUrl(760, 70,
-  // a fern at 120, a palm at 500 (the old alternating fern / palm emoji, 380 apart)
-  '<g fill="#43A047" stroke="#2E7D32" stroke-width="2"><path d="M120 70 Q96 40 84 22 Q108 38 120 70Z"/><path d="M120 70 Q144 40 156 22 Q132 38 120 70Z"/><path d="M120 70 Q112 34 120 8 Q128 34 120 70Z"/><path d="M120 70 Q90 56 72 52 Q100 50 120 70Z"/><path d="M120 70 Q150 56 168 52 Q140 50 120 70Z"/></g>'
-  + '<path d="M496 70 Q492 40 502 18 L508 18 Q500 42 506 70Z" fill="#8D6E63" stroke="#5D4037" stroke-width="2"/>'
-  + '<g fill="#66BB6A" stroke="#2E7D32" stroke-width="2"><path d="M505 18 Q480 6 462 20 Q484 14 505 18Z"/><path d="M505 18 Q530 6 548 20 Q526 14 505 18Z"/><path d="M505 18 Q486 22 474 40 Q492 26 505 18Z"/><path d="M505 18 Q524 22 536 40 Q518 26 505 18Z"/></g>');
+  return svgUrl(HILL_P, 100, `<path d="${d}L${HILL_P} 100Z" fill="${fill}"${stroke ? ` stroke="${stroke}" stroke-width="2"` : ''}/>`);
+};
+
+/** The lava's bright top: every theme keeps the same lava. */
+export const LAVA_TOP = '#FFEB3B';
+const LAVA = `linear-gradient(${LAVA_TOP},#FF5722 30%,#B71C1C)`;
+
+/**
+ * A dino landscape: the sky (the arena), the sun, three scenery bands drawn as repeating inline SVG (far 600 x 130,
+ * hills HILL_P x 100, plants 760 x 70: the same sizes and parallax in every theme), the ground's colours and the
+ * platforms'. The lava, rocks, door and letters look the same in every theme.
+ */
+export interface JumpTheme {
+  id: 'volcano' | 'desert' | 'snow';
+  sky: string;
+  sun: string;
+  far: string;
+  hills: string;
+  plants: string;
+  /** top: the walking strip, edge: its outline, soil: the body (the pit walls), pebble: the stones in it. */
+  ground: { top: string; edge: string; soil: string; pebble: string };
+  plat: { top: string; body: string; edge: string };
+}
+
+/** The old volcano valley. */
+const VOLCANO: JumpTheme = {
+  id: 'volcano',
+  sky: 'linear-gradient(#FF8A65,#FFCC80 45%,#FFF3E0)',
+  sun: '#FFF59D',
+  far: svgUrl(600, 130, '<path d="M120 130 L182 34 Q200 22 218 34 L280 130Z" fill="#8D6E63"/><path d="M182 34 Q200 22 218 34 L210 46 Q200 40 190 46Z" fill="#FF7043"/><circle cx="196" cy="12" r="9" fill="#BCAAA4" opacity="0.8"/><circle cx="210" cy="4" r="6" fill="#BCAAA4" opacity="0.6"/>'),
+  hills: hillsBg('#A1887F'),
+  plants: svgUrl(760, 70,
+    // a fern at 120, a palm at 500 (the old alternating fern / palm emoji, 380 apart)
+    '<g fill="#43A047" stroke="#2E7D32" stroke-width="2"><path d="M120 70 Q96 40 84 22 Q108 38 120 70Z"/><path d="M120 70 Q144 40 156 22 Q132 38 120 70Z"/><path d="M120 70 Q112 34 120 8 Q128 34 120 70Z"/><path d="M120 70 Q90 56 72 52 Q100 50 120 70Z"/><path d="M120 70 Q150 56 168 52 Q140 50 120 70Z"/></g>'
+    + '<path d="M496 70 Q492 40 502 18 L508 18 Q500 42 506 70Z" fill="#8D6E63" stroke="#5D4037" stroke-width="2"/>'
+    + '<g fill="#66BB6A" stroke="#2E7D32" stroke-width="2"><path d="M505 18 Q480 6 462 20 Q484 14 505 18Z"/><path d="M505 18 Q530 6 548 20 Q526 14 505 18Z"/><path d="M505 18 Q486 22 474 40 Q492 26 505 18Z"/><path d="M505 18 Q524 22 536 40 Q518 26 505 18Z"/></g>'),
+  ground: { top: '#7CB342', edge: '#33691E', soil: '#795548', pebble: '#6D4C41' },
+  plat: { top: '#7CB342', body: '#8D6E63', edge: '#4E342E' },
+};
+
+/* owner 2026-11-22 (preview 0.7): "add two more background and terrain types. desertish, and snowish" */
+/** Desert: a warm sky, a mesa and a dune far off, sand dunes, cacti and desert rocks, sand over dark sandstone. */
+const DESERT: JumpTheme = {
+  id: 'desert',
+  sky: 'linear-gradient(#F9A825,#FFE082 45%,#FFF8E1)',
+  sun: '#FFFDE7',
+  far: svgUrl(600, 130, '<path d="M70 130 L70 72 Q70 62 80 62 L196 62 Q206 62 206 72 L206 130Z" fill="#C67B4E"/><path d="M84 62 L192 62 L186 74 L90 74Z" fill="#A85F38"/><path d="M330 130 Q420 70 520 130Z" fill="#E0A96D"/>'),
+  hills: hillsBg('#E8B865'),
+  plants: svgUrl(760, 70,
+    // a cactus at 120, two desert rocks at 500 (the old plants' 380 rhythm)
+    '<g data-cactus="1" fill="#43A047" stroke="#1B5E20" stroke-width="2"><rect x="112" y="12" width="16" height="58" rx="8"/><path d="M112 46 H102 Q94 46 94 38 V26 Q94 20 100 20 Q106 20 106 26 V36 H112Z"/><path d="M128 38 H134 V22 Q134 16 140 16 Q146 16 146 22 V32 Q146 44 136 44 H128Z"/></g>'
+    + '<path d="M466 70 Q470 46 492 42 Q514 40 524 56 Q530 64 528 70Z" fill="#B5774A" stroke="#7A4E2A" stroke-width="2"/><path d="M524 70 Q528 58 540 57 Q552 58 554 70Z" fill="#C98A58" stroke="#7A4E2A" stroke-width="2"/>'),
+  ground: { top: '#F4C76B', edge: '#A86F33', soil: '#A9733F', pebble: '#8A5A2E' },
+  plat: { top: '#F4C76B', body: '#A9733F', edge: '#6D4520' },
+};
+
+/** Snow: a cold sky, snow-capped mountains, white hills, a snowy pine and a snowman, snow over frozen rock. */
+const SNOW: JumpTheme = {
+  id: 'snow',
+  sky: 'linear-gradient(#5C9BD5,#A9CCEB 45%,#E1EEF8)',
+  sun: '#FFFDE7',
+  far: svgUrl(600, 130, '<path d="M90 130 L200 26 L310 130Z" fill="#90A4AE"/><path d="M200 26 L232 56 L216 52 L200 64 L184 52 L168 56Z" fill="#FFFFFF"/><path d="M300 130 L380 60 L460 130Z" fill="#78909C"/><path d="M380 60 L402 80 L380 76 L358 80Z" fill="#FFFFFF"/>'),
+  hills: hillsBg('#F7FBFF', '#B0C4D8'),
+  plants: svgUrl(760, 70,
+    // a snowy pine at 120, a snowman at 500
+    '<g data-pine="1"><rect x="115" y="60" width="10" height="10" fill="#6D4C41"/><path d="M120 2 L146 38 L134 38 L154 64 L86 64 L106 38 L94 38Z" fill="#2E7D32" stroke="#1B5E20" stroke-width="2"/><path d="M120 2 L131 17 L109 17Z M98 38 L142 38 L136 44 L104 44Z M90 64 L150 64 L146 60 L94 60Z" fill="#FFFFFF"/></g>'
+    + '<g data-snowman="1" stroke="#90A4AE" stroke-width="2"><circle cx="500" cy="53" r="16" fill="#FFFFFF"/><circle cx="500" cy="27" r="11" fill="#FFFFFF"/><rect x="490" y="12" width="20" height="5" fill="#263238"/><rect x="494" y="2" width="12" height="11" fill="#263238"/></g>'
+    + '<circle cx="496" cy="25" r="1.6" fill="#263238"/><circle cx="504" cy="25" r="1.6" fill="#263238"/><path d="M500 28 L510 30 L500 32Z" fill="#FB8C00"/>'),
+  ground: { top: '#FFFFFF', edge: '#90A4AE', soil: '#5D6D7E', pebble: '#455463' },
+  plat: { top: '#FFFFFF', body: '#78909C', edge: '#455A64' },
+};
+
+/** Every dino theme, in the order the levels reach them. */
+export const JUMP_THEMES: readonly JumpTheme[] = [VOLCANO, DESERT, SNOW];
+/** The level picks the theme (level 1 the volcano valley, 2 the desert, 3 the snow), so every whole game shows all three. */
+export const themeForLevel = (lvl: number): JumpTheme => JUMP_THEMES[((lvl % JUMP_THEMES.length) + JUMP_THEMES.length) % JUMP_THEMES.length];
 
 const DINO_SVG = '<svg width="76" height="66" viewBox="0 0 76 66" aria-hidden="true" style="position:absolute;left:-38px;top:-66px;overflow:visible">'
   + '<path d="M16 40 Q 2 40 1 26 Q 8 34 20 32z" fill="#5CB85C" stroke="#2E6B30" stroke-width="2" stroke-linejoin="round"></path>'
@@ -208,15 +290,15 @@ const faceStyle = (look: FaceLook): string => `box-sizing:border-box;flex:none;w
 
 /** A ground piece's height in world units: from 6 above its top down past the world's bottom (420). */
 const groundH = (g: GroundPiece): number => JUMP.viewH + 10 - g.y + 6;
-function groundSvg(g: GroundPiece): string {
+function groundSvg(g: GroundPiece, t: JumpTheme): string {
   const w = g.x1 - g.x0, hh = groundH(g);
   let pebbles = '';
-  for (let xx = g.x0 + 20; xx < g.x1 - 10; xx += 70) pebbles += `<circle cx="${r1(xx - g.x0)}" cy="${r1(46 + (Math.abs(Math.round(xx)) % 3) * 14)}" r="6" fill="#6D4C41"></circle>`;
+  for (let xx = g.x0 + 20; xx < g.x1 - 10; xx += 70) pebbles += `<circle cx="${r1(xx - g.x0)}" cy="${r1(46 + (Math.abs(Math.round(xx)) % 3) * 14)}" r="6" fill="${t.ground.pebble}"></circle>`;
   return `<svg width="100%" height="100%" viewBox="0 0 ${r1(w)} ${r1(hh)}" preserveAspectRatio="none" aria-hidden="true" style="display:block;overflow:visible">`
-    + `<rect x="0" y="6" width="${r1(w)}" height="${r1(hh - 6)}" fill="#795548"></rect>${pebbles}`
-    + `<rect x="0" y="0" width="${r1(w)}" height="16" rx="6" fill="#7CB342" stroke="#33691E" stroke-width="3"></rect></svg>`;
+    + `<rect x="0" y="6" width="${r1(w)}" height="${r1(hh - 6)}" fill="${t.ground.soil}"></rect>${pebbles}`
+    + `<rect x="0" y="0" width="${r1(w)}" height="16" rx="6" fill="${t.ground.top}" stroke="${t.ground.edge}" stroke-width="3"></rect></svg>`;
 }
-const PLAT_SVG = `<svg width="${PLAT_W}" height="29" viewBox="0 0 ${PLAT_W} 29" aria-hidden="true" style="display:block;overflow:visible"><rect x="0" y="5" width="${PLAT_W}" height="24" rx="8" fill="#8D6E63" stroke="#4E342E" stroke-width="3"></rect><rect x="0" y="0" width="${PLAT_W}" height="10" rx="5" fill="#7CB342"></rect></svg>`;
+const platSvg = (t: JumpTheme): string => `<svg width="${PLAT_W}" height="29" viewBox="0 0 ${PLAT_W} 29" aria-hidden="true" style="display:block;overflow:visible"><rect x="0" y="5" width="${PLAT_W}" height="24" rx="8" fill="${t.plat.body}" stroke="${t.plat.edge}" stroke-width="3"></rect><rect x="0" y="0" width="${PLAT_W}" height="10" rx="5" fill="${t.plat.top}"></rect></svg>`;
 const ROCK_SVG = '<svg width="52" height="46" viewBox="-26 -44 52 46" aria-hidden="true" style="display:block;overflow:visible"><ellipse cx="0" cy="-20" rx="23" ry="22" fill="#78909C" stroke="#37474F" stroke-width="3"></ellipse><ellipse cx="-8" cy="-28" rx="7" ry="4" fill="#B0BEC5"></ellipse></svg>';
 function doorSvg(open: boolean): string {
   // origin at the door's foot: the glow (open), the frame, the inside, the knob (closed) and the chequered flag on top
@@ -257,13 +339,15 @@ export const jumpStep: StepModule = {
     // ---- view: the sky fills the arena; scenery layers in arena pixels; the world in stage units, scaled by k
     const layer = (style: string, attrs: Record<string, string> = {}): HTMLElement =>
       h('div', { 'aria-hidden': 'true', ...attrs, style: `position:absolute;left:0;right:0;pointer-events:none;${style}` });
-    const sun = layer('right:auto;border-radius:50%;background:#FFF59D');
-    const volcanoes = layer(`background:${VOLCANO_BG} repeat-x`);
-    const hills = layer(`background:${HILLS_BG} repeat-x`);
-    const plants = layer(`background:${PLANTS_BG} repeat-x`);
-    const lava = layer('bottom:0;overflow:hidden;background:linear-gradient(#FFEB3B,#FF5722 30%,#B71C1C)', { 'data-lava': '1' });
+    // the theme of the first level drawn; enterLevel switches it per level
+    let theme = themeForLevel(startLevel);
+    const sun = layer(`right:auto;border-radius:50%;background:${theme.sun}`);
+    const volcanoes = layer(`background-image:${theme.far};background-repeat:repeat-x`, { 'data-scenery': 'far' });
+    const hills = layer(`background-image:${theme.hills};background-repeat:repeat-x`, { 'data-scenery': 'hills' });
+    const plants = layer(`background-image:${theme.plants};background-repeat:repeat-x`, { 'data-scenery': 'plants' });
+    const lava = layer(`bottom:0;overflow:hidden;background:${LAVA}`, { 'data-lava': '1' });
     const bubbles = Array.from({ length: 10 }, () => {
-      const b = h('div', { style: 'position:absolute;left:0;top:0;border-radius:50%;background:#FFEB3B' });
+      const b = h('div', { style: `position:absolute;left:0;top:0;border-radius:50%;background:${LAVA_TOP}` });
       lava.appendChild(b);
       return b;
     });
@@ -294,8 +378,8 @@ export const jumpStep: StepModule = {
     });
     let hud = starHud(levels[startLevel].targets);
     const arena = h('div', {
-      'data-step': 'jump', 'data-level': String(startLevel),
-      style: 'position:absolute;inset:0;overflow:hidden;background:linear-gradient(#FF8A65,#FFCC80 45%,#FFF3E0);touch-action:none;user-select:none;-webkit-user-select:none',
+      'data-step': 'jump', 'data-level': String(startLevel), 'data-theme': theme.id,
+      style: `position:absolute;inset:0;overflow:hidden;background:${theme.sky};touch-action:none;user-select:none;-webkit-user-select:none`,
     }, style, scene, hud.el, heartsBox, dotsBox);
     ctx.stage.appendChild(arena);
 
@@ -356,7 +440,7 @@ export const jumpStep: StepModule = {
         'data-ground': '1', 'data-x0': String(g.x0), 'data-x1': String(g.x1), 'data-y': String(g.y),
         style: `position:absolute;left:0;top:0;width:${r1(g.x1 - g.x0)}px;height:${r1(groundH(g))}px`,
       });
-      el.innerHTML = groundSvg(g);
+      el.innerHTML = groundSvg(g, theme);
       at(el, g.x0, g.y - 6);
       return el;
     };
@@ -372,8 +456,21 @@ export const jumpStep: StepModule = {
       at(s.el, s.item.x, s.item.y);
     };
 
+    // ---- the level's landscape: sky, sun and scenery bands (the ground and platforms take it when they are drawn)
+    const applyTheme = (t: JumpTheme): void => {
+      if (t === theme) return;
+      theme = t;
+      arena.setAttribute('data-theme', t.id);
+      arena.style.background = t.sky;
+      sun.style.background = t.sun;
+      volcanoes.style.backgroundImage = t.far;
+      hills.style.backgroundImage = t.hills;
+      plants.style.backgroundImage = t.plants;
+    };
+
     // ---- a level: the course in the DOM, the dino at the start, the star slots refilled
     const enterLevel = (): void => {
+      applyTheme(themeForLevel(lvl));
       groundLayer.replaceChildren();
       thingLayer.replaceChildren();
       signLayer.replaceChildren();
@@ -381,7 +478,7 @@ export const jumpStep: StepModule = {
       groundLayer.append(...groundEls);
       for (const p of L.plats) {
         const el = h('div', { 'data-plat': '1', 'data-x': String(p.x), 'data-w': String(p.w), 'data-y': String(p.y), style: `position:absolute;left:0;top:0;width:${p.w}px;height:29px` });
-        el.innerHTML = PLAT_SVG;
+        el.innerHTML = platSvg(theme);
         at(el, p.x, p.y - 5);
         thingLayer.appendChild(el);
       }

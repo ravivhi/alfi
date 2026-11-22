@@ -67,9 +67,11 @@ public class MainActivity extends Activity {
         s.setMediaPlaybackRequiresUserGesture(false);
         s.setAllowFileAccess(false);
         s.setAllowContentAccess(false);
+        // Owner 2026-11-22 (preview 0.7): no zoom - kids zoomed in by accident. No pinch, no zoom buttons, the
+        // system font size never scales the text.
         s.setTextZoom(100);
-        s.setSupportZoom(true);
-        s.setBuiltInZoomControls(true);
+        s.setSupportZoom(false);
+        s.setBuiltInZoomControls(false);
         s.setDisplayZoomControls(false);
 
         final WebViewAssetLoader loader = new WebViewAssetLoader.Builder()

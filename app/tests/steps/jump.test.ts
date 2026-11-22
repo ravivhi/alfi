@@ -5,7 +5,8 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import type { StepContext, StepModule } from '../../src/steps/contract.ts';
 import type { StepResult } from '../../src/engine/types.ts';
-import { jumpStep, JUMP, buildLevel, moveAhead } from '../../src/steps/jump.ts';
+import { jumpStep, JUMP, buildLevel, moveAhead, groundAt, PIT_MIN_W, PIT_MAX_W, JUMP_THEMES, themeForLevel, LAVA_TOP } from '../../src/steps/jump.ts';
+import { contrastRatio } from '../../src/util/contrast.ts';
 import type { Level } from '../../src/steps/jump.ts';
 import { REGISTRY } from '../../src/steps/registry.ts';
 import { profileFor, SLICE_STEPS } from '../../src/engine/profiles.ts';
@@ -142,13 +143,15 @@ describe('jump: the level builder (old LV and build)', () => {
     }
   });
 
-  it('pits are 80-105 wide and step-ups 60 high', () => {
+  it('pits are 80-96 wide (owner 2026-11-22: the wide ones narrower, never narrower than the narrow ones) and step-ups 60 high', () => {
+    const widths: number[] = [];
     for (let seed = 1; seed <= 60; seed++) {
       for (const cfg of LEVELS) {
         const lv = buildLevel(cfg, createRng(seed));
         for (const p of lv.pits) {
-          expect(p.x1 - p.x0).toBeGreaterThanOrEqual(80);
-          expect(p.x1 - p.x0).toBeLessThanOrEqual(105);
+          widths.push(p.x1 - p.x0);
+          expect(p.x1 - p.x0).toBeGreaterThanOrEqual(PIT_MIN_W);
+          expect(p.x1 - p.x0).toBeLessThanOrEqual(PIT_MAX_W);
         }
         for (const s of lv.steps) {
           expect(s.x1 - s.x0).toBeGreaterThanOrEqual(260);
@@ -160,6 +163,42 @@ describe('jump: the level builder (old LV and build)', () => {
         lv.ground.filter(q => !lv.steps.some(s => s.x0 === q.x0)).forEach(q => expect(q.y).toBe(GY));
         expect(lv.ground.length).toBe(1 + lv.pits.length + 2 * lv.steps.length);
       }
+    }
+    // the old draw was 80-105; its widest third (97-105) is now the narrowest pit, so no pit is wider than 96
+    expect(PIT_MIN_W).toBe(80);
+    expect(PIT_MAX_W).toBe(96);
+    expect(Math.max(...widths)).toBeLessThanOrEqual(96);
+    expect(Math.min(...widths)).toBe(80);
+    // about a third of the old draws were 97-105 and are 80 now: well over a quarter of the pits are 80 wide
+    expect(widths.filter(w => w === 80).length / widths.length).toBeGreaterThan(0.25);
+  });
+
+  it('every pit of every level is cleared by a simulated hop, with margin (owner 2026-11-22: narrower wide pits)', () => {
+    // the game's step: 1/60 s, airSpeed forward, gravity down from jumpVel up; the hop lands when it is back at ground
+    const hop = (takeoff: number): number => {
+      let x = takeoff, y = 0, vy = -CFG.jumpVel;
+      for (let n = 0; n < 600; n++) {
+        const d = 1 / 60;
+        x += CFG.airSpeed * d;
+        vy += CFG.gravity * d;
+        y += vy * d;
+        if (y >= 0 && vy > 0) return x;
+      }
+      return x;
+    };
+    for (let seed = 1; seed <= 100; seed++) {
+      LEVELS.forEach((cfg, i) => {
+        const lv = buildLevel(cfg, createRng(seed * 13 + i));
+        for (const p of lv.pits) {
+          // a late take-off right at the edge and an early one 40 units before it both land on the far ground,
+          // the dino's whole foot (16 units, as the game's look-ahead) beyond the pit
+          for (const t of [p.x0 - 2, p.x0 - 40]) {
+            const land = hop(t);
+            expect(land, `seed ${seed} level ${i + 1} pit ${p.x0}-${p.x1} from ${t}`).toBeGreaterThan(p.x1 + 16);
+            expect(groundAt(lv, land)).toBe(GY);
+          }
+        }
+      });
     }
   });
 
@@ -223,6 +262,54 @@ describe('jump: wiring', () => {
     for (const [i, lv] of LEVELS.entries()) {
       const tallest = Math.max(lv.steps ? JUMP.stepUp : 0, lv.rocks ? JUMP.rockH : 0, lv.platforms ? JUMP.platTop : 0);
       expect(newApex - tallest, `level ${i + 1}`).toBeGreaterThanOrEqual(0.1 * newApex);
+    }
+  });
+});
+
+describe('jump: themes (owner 2026-11-22: "add two more background and terrain types. desertish, and snowish")', () => {
+  it('three themes, volcano valley, desert and snow; the level picks one, so every game reaches all three', () => {
+    expect(JUMP_THEMES.map(t => t.id)).toEqual(['volcano', 'desert', 'snow']);
+    expect(LEVELS.map((_, i) => themeForLevel(i).id)).toEqual(['volcano', 'desert', 'snow']);
+    expect(themeForLevel(3).id).toBe('volcano');
+    // each theme has its own sky, ground and scenery
+    for (const k of ['sky', 'far', 'hills', 'plants'] as const) expect(new Set(JUMP_THEMES.map(t => t[k])).size).toBe(3);
+    expect(new Set(JUMP_THEMES.map(t => t.ground.top)).size).toBe(3);
+    for (const t of JUMP_THEMES) {
+      for (const k of ['far', 'hills', 'plants'] as const) expect(t[k]).toMatch(/^url\("data:image\/svg\+xml,/);
+      // the lava pit stays readable: its bright top against the pit walls (the theme's soil)
+      expect(contrastRatio(t.ground.soil, LAVA_TOP), t.id).toBeGreaterThanOrEqual(3);
+    }
+    // desert: sand and cacti; snow: snow ground, a white crest on the ground and pines and a snowman
+    const desert = JUMP_THEMES[1], snow = JUMP_THEMES[2];
+    expect(decodeURIComponent(desert.plants)).toContain('data-cactus');
+    expect(decodeURIComponent(snow.plants)).toContain('data-pine');
+    expect(decodeURIComponent(snow.plants)).toContain('data-snowman');
+    expect(snow.ground.top).toBe('#FFFFFF');
+  });
+
+  it('each level is drawn in its theme without errors: sky, scenery, ground and platforms', async () => {
+    for (const lv of [0, 1, 2]) {
+      freshStage();
+      const errors = vi.spyOn(console, 'error');
+      const ac = new AbortController();
+      start(jumpStep, makeCtx(5, ac.signal, lv));
+      const bot = createDinoBot(stage, T);
+      for (let i = 0; i < 120; i++) { bot.tick(); await advance(FRAME); }
+      const th = themeForLevel(lv);
+      const arena = one('[data-step="jump"]');
+      expect(arena.dataset.theme).toBe(th.id);
+      expect(arena.style.background.replace(/\s/g, '')).toBe(th.sky.replace(/\s/g, ''));
+      const scenery = all('[data-scenery]');
+      expect(scenery.map(e => e.dataset.scenery)).toEqual(['far', 'hills', 'plants']);
+      scenery.forEach(e => { expect(e.style.backgroundImage).toContain('data:image/svg+xml'); expect(e.style.backgroundRepeat).toBe('repeat-x'); });
+      // the theme's own pictures (the encoded SVG inside url("..."))
+      (['far', 'hills', 'plants'] as const).forEach((k, i) => expect(scenery[i].style.backgroundImage).toContain(th[k].slice(th[k].indexOf('data:'), -2)));
+      for (const g of all('[data-ground]')) { expect(g.innerHTML).toContain(th.ground.soil); expect(g.innerHTML).toContain(th.ground.top); }
+      for (const p of all('[data-plat]')) expect(p.innerHTML).toContain(th.plat.body);
+      expect(errors).not.toHaveBeenCalled();
+      ac.abort();
+      await advance(1);
+      errors.mockRestore();
     }
   });
 });
@@ -437,6 +524,9 @@ describe('jump: play', () => {
     await advance(FRAME);
     expect(one('[data-level-card]')).toBeNull();
     expect(one('[data-step="jump"]').dataset.level).toBe('1');
+    expect(one('[data-step="jump"]').dataset.theme).toBe('desert');
+    expect(one('[data-scenery="plants"]').style.backgroundImage).toContain('data-cactus');
+    expect(one('[data-ground]').innerHTML).toContain(themeForLevel(1).ground.soil);
     expect(instructions.length).toBe(asks + 1);
     expect(instructions[instructions.length - 1]).toBe(line(CONTENT, 'jump.ask', { name: NAME(T) }));
     const c = course();

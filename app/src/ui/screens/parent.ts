@@ -11,6 +11,7 @@ import { applyImport, exportChild, parseImport } from '../../store/exportImport.
 import type { ImportResult } from '../../store/exportImport.ts';
 import { exportFile as defaultExportFile } from '../../platform/native.ts';
 import type { ExportStart } from '../../platform/native.ts';
+import { readPhoto as defaultReadPhoto } from '../../platform/photo.ts';
 import { emptyProgress } from '../../engine/planner.ts';
 import { expandPath } from '../../engine/curriculum.ts';
 import { ageNow, bandForAge } from '../../engine/age.ts';
@@ -29,6 +30,8 @@ export const EXPORT_CHOOSE = 'בחרו איפה לשמור את קובץ הגי�
 export const EXPORT_SAVED = 'קובץ הגיבוי נשמר';
 export const EXPORT_NOT_SAVED = 'קובץ הגיבוי לא נשמר';
 export const EXPORT_FAILED = 'שמירת הקובץ נכשלה';
+export const PHOTO_CHANGED = 'התמונה הוחלפה';
+export const PHOTO_NOT_READ = 'התמונה לא נקראה - התמונה הקודמת נשארה';
 
 export interface ParentApp {
   save: SaveData;
@@ -56,6 +59,8 @@ export interface ParentDeps {
   /** true / false: the file was saved / failed at once; 'choosing': the APK opened a save window, onDone tells later. */
   exportFile?: (name: string, text: string, onDone?: (ok: boolean) => void) => ExportStart;
   readFile?: (f: File) => Promise<string>;
+  /** A picked image as the stored photo (setup's square JPEG data URL); rejects when it cannot be read. */
+  readPhoto?: (f: File) => Promise<string>;
   /** True while a break is running (boot.ts reads the break clock); without it the skip button stays hidden. */
   breakActive?: () => boolean;
   onSkipBreak?: () => void;
@@ -82,6 +87,7 @@ export function mountParent(root: HTMLElement, d: ParentDeps): () => void {
   const app = d.app;
   const exportFile = d.exportFile ?? defaultExportFile;
   const readFile = d.readFile ?? ((f: File) => f.text());
+  const readPhoto = d.readPhoto ?? defaultReadPhoto;
   const getChild = (): ChildRecord | undefined => app.save.children.find(c => c.id === d.childId);
 
   let includePhoto = false;
@@ -231,6 +237,29 @@ export function mountParent(root: HTMLElement, d: ParentDeps): () => void {
         render();
       }, () => { pendingImport = null; message = 'הקובץ לא נקרא'; render(); });
     });
+    // owner 2026-11-22 (preview 0.7): "allow changing the picture of a player. remove the old add the new". The same
+    // picker as setup: an image file input (the APK answers it with its own chooser). A read photo replaces the
+    // stored one in the child's record and in storage; a closed picker or an unreadable file keeps the old one.
+    const photoIn = h('input', { type: 'file', accept: 'image/*', 'data-photo-file': '1', 'aria-label': 'תמונה', style: 'display:none' }) as HTMLInputElement;
+    photoIn.addEventListener('change', () => {
+      const f = photoIn.files?.[0];
+      photoIn.value = '';
+      if (!f) return;
+      readPhoto(f).then(photo => {
+        const ch = getChild();
+        if (disposed || !ch) return;
+        ch.photo = photo;
+        message = PHOTO_CHANGED;
+        // the save keeps the save before it as a recovery copy (save.ts KEYS.prev); a second save rolls the old
+        // photo out of that copy too, so it is gone from storage
+        if (app.persist()) app.persist();
+        render();
+      }, () => {
+        if (disposed) return;
+        message = PHOTO_NOT_READ;
+        render();
+      });
+    });
     const status = message ? h('p', { role: 'status', 'data-message': '1', style: 'margin:0;font-size:14px' }, message) : null;
 
     let confirmBox: HTMLElement | null = null;
@@ -283,10 +312,11 @@ export function mountParent(root: HTMLElement, d: ParentDeps): () => void {
         } }, 'גיבוי לקובץ'),
         h('button', { type: 'button', style: BTN, onClick: () => fileIn.click() }, 'שחזור מקובץ'),
         h('button', { type: 'button', style: BTN, onClick: () => { panel = panel === 'age' ? 'none' : 'age'; render(); } }, 'תיקון גיל'),
+        h('button', { type: 'button', 'data-change-photo': '1', style: BTN, onClick: () => photoIn.click() }, 'החלפת תמונה'),
         h('button', { type: 'button', style: BTN, onClick: d.onAddChild }, 'הוספת ילד'),
         h('button', { type: 'button', style: DANGER, onClick: () => { panel = 'reset'; render(); } }, 'איפוס התקדמות'),
         h('button', { type: 'button', style: DANGER, onClick: () => { panel = 'delete'; render(); } }, 'מחיקת ילד')),
-      fileIn, status, confirmBox, ageBox,
+      fileIn, photoIn, status, confirmBox, ageBox,
       panel === 'reset' ? confirmPanel('reset', `לאפס את ההתקדמות של ${child.name}? האותיות והמדבקות יחזרו להתחלה.`, 'החזיקו 3 שניות לאיפוס', () => {
         child.progress = emptyProgress();
         child.mastery = {};

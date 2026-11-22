@@ -1,6 +1,6 @@
 // @vitest-environment happy-dom
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { mountParent } from '../../src/ui/screens/parent.ts';
+import { mountParent, PHOTO_CHANGED, PHOTO_NOT_READ } from '../../src/ui/screens/parent.ts';
 import type { ParentApp, ParentDeps } from '../../src/ui/screens/parent.ts';
 import { freshSave, newChild } from '../../src/store/schema.ts';
 import type { ChildRecord } from '../../src/store/schema.ts';
@@ -502,5 +502,76 @@ describe('parent page footer', () => {
       expect(label(m.root).textContent).toBe('9.9-preview');
       expect(label(m.root).closest('button')).toBeNull();
     } finally { delete (window as unknown as { AlfiNative?: unknown }).AlfiNative; }
+  });
+});
+
+describe('change a child\'s picture (owner 2026-11-22: "allow changing the picture of a player. remove the old add the new")', () => {
+  const OLD = 'data:image/jpeg;base64,T0xE';
+  const NEW = 'data:image/jpeg;base64,TkVX';
+  const changeBtn = (r: HTMLElement) => r.querySelector('[data-change-photo]') as HTMLButtonElement;
+  const picker = (r: HTMLElement) => r.querySelector('input[type=file][data-photo-file]') as HTMLInputElement;
+  /** The file input reports a picked file (files given) or a closed picker (no files), as the browser and the APK do. */
+  const pick = (r: HTMLElement, files: File[]) => {
+    const input = picker(r);
+    Object.defineProperty(input, 'files', { configurable: true, value: files });
+    input.dispatchEvent(new Event('change'));
+  };
+  const headerPhoto = (r: HTMLElement) => (r.querySelector('h1')!.parentElement!.parentElement!.querySelector('img') as HTMLImageElement | null)?.getAttribute('src');
+  const flush = () => new Promise(res => setTimeout(res, 0));
+
+  it('the button opens the same image picker as setup (a file input for images; the APK answers it with its chooser)', () => {
+    const m = mounted({ photo: OLD });
+    const b = changeBtn(m.root);
+    expect(b).not.toBeNull();
+    expect(b.textContent).toBe('החלפת תמונה');
+    expect(b.getAttribute('style')).toBe(btn(m.root, 'תיקון גיל').getAttribute('style')); // looks like its neighbours
+    expect(picker(m.root).accept).toBe('image/*');
+    let opened = 0;
+    picker(m.root).click = () => { opened++; };
+    b.click();
+    expect(opened).toBe(1);
+  });
+
+  it('a picked photo replaces the stored one: the old is gone from the save, the new is saved and shown', async () => {
+    const read: File[] = [];
+    const m = mounted({ photo: OLD, children: 2 }, { readPhoto: async (f: File) => { read.push(f); return NEW; } });
+    expect(headerPhoto(m.root)).toBe(OLD);
+    const before = m.persisted;
+    const file = new File(['x'], 'kid.jpg', { type: 'image/jpeg' });
+    pick(m.root, [file]);
+    await flush();
+    expect(read).toEqual([file]);
+    expect(m.app.save.children[0].photo).toBe(NEW);
+    expect(JSON.stringify(m.app.save.children[0])).not.toContain(OLD);
+    expect(m.persisted).toBe(before + 2); // the second save rolls the old photo out of the recovery copy
+    expect(headerPhoto(m.root)).toBe(NEW);
+    expect(m.root.querySelector('[data-message]')!.textContent).toBe(PHOTO_CHANGED);
+    // only this child's photo changed
+    expect(m.app.save.children[1].photo).toBe(OLD);
+  });
+
+  it('a child without a photo gets one the same way', async () => {
+    const m = mounted({ photo: null }, { readPhoto: async () => NEW });
+    expect(headerPhoto(m.root)).toBeUndefined();
+    pick(m.root, [new File(['x'], 'kid.jpg', { type: 'image/jpeg' })]);
+    await flush();
+    expect(m.app.save.children[0].photo).toBe(NEW);
+    expect(headerPhoto(m.root)).toBe(NEW);
+  });
+
+  it('cancel (the picker closed without a photo) and an unreadable file keep the old photo', async () => {
+    const m = mounted({ photo: OLD }, { readPhoto: async () => { throw new Error('decode'); } });
+    const before = m.persisted;
+    pick(m.root, []);
+    await flush();
+    expect(m.app.save.children[0].photo).toBe(OLD);
+    expect(m.persisted).toBe(before);
+    expect(m.root.querySelector('[data-message]')).toBeNull();
+    pick(m.root, [new File(['x'], 'broken.jpg', { type: 'image/jpeg' })]);
+    await flush();
+    expect(m.app.save.children[0].photo).toBe(OLD);
+    expect(m.persisted).toBe(before);
+    expect(headerPhoto(m.root)).toBe(OLD);
+    expect(m.root.querySelector('[data-message]')!.textContent).toBe(PHOTO_NOT_READ);
   });
 });

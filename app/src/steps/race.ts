@@ -27,7 +27,6 @@ export const DRAW = 110;
 export const PZ = CAMH * DEPTH;
 export const ROAD_CURVES: readonly number[] = [0, 1.6, -1.6, 2.4, -2.4, 0, 3, -3];
 export const ROAD_HILLS: readonly number[] = [0, 0, 8, -8, 14, -14];
-const HIT = 0.3;          // an item counts when |item.off - carPos| < HIT at the car's segment
 const STEER_MAX = 0.8;    // carPos range in road units
 const FINISH_AHEAD = 40;  // segments from the last pick-up to the finish line
 const ITEM_SIZE = 380;    // item size in world units (old sz = s * W/2 * 380)
@@ -109,6 +108,48 @@ export function placeItems(road: Segment[], rng: Rng, cfg: ItemPlan, spawner: { 
     if (rng.next() < cfg.secondChance) items.push(cone((lane + rng.int(1, 2)) % 3));
   }
 }
+
+// ---- the collider: what the child sees (owner 2026-11-22, preview 0.7: "the car collider is a bit too wide, i dont want
+// to collect or hit obstacles the car did not actually touch visually"). It was a lane band, |item.off - carPos| < 0.3
+// road units at the car's segment: at the car's depth one road unit is W px, so the band reached 0.3 W from the car's
+// centre, while the drawn car body reaches 0.13 W and an item's drawn half only adds about 0.08 W (0.21 W in all).
+// Now an item counts only when its drawn shape overlaps the drawn car body: no padding, no lane band.
+
+/** The car's drawn width in px on a stage W px wide (its body spans this width; the drawing's box is 1.14 x it). */
+export const carWidth = (W: number): number => Math.min(W * 0.26, 230);
+/** Half the car's body as a share of carWidth: the wheels and the roof bar span -50..50 of the 100-unit drawing (the shadow is not body). */
+export const CAR_BODY_HALF = 0.5;
+/** Half the cone's drawn width in its 100-unit item box: its base, x 10..90. */
+const CONE_HALF = 40;
+/** A letter's face disc in the 100-unit item box before its look's scale (faceStyle, border included). */
+const FACE_BOX = 84;
+const itemHalfUnits = (it: RoadItem): number => (it.kind === 'cone' ? CONE_HALF : (it.look ? faceSize(FACE_BOX, it.look) : FACE_BOX) / 2);
+
+/**
+ * The gap in px between an item's drawn edge and the car body's drawn edge (negative: they overlap). The item on
+ * segment seg is projected exactly as roadFrame draws it this frame (its depth, the road's curve); the car stands at
+ * the stage centre. A segment the car went past within one long frame is taken as it stood on the car's line (at the
+ * car's depth, where the item is drawn largest; the small curve shift there is left out).
+ */
+export function carGap(road: Segment[], pos: number, carPos: number, seg: number, it: RoadItem, W: number): number {
+  const n0 = Math.floor(pos / SEG);
+  const bs = road[n0];
+  let z = seg * SEG - pos;
+  let x = 0;
+  if (bs && z > PZ - SEG) {
+    // the curve shift roadFrame has accumulated when it reaches segment seg
+    let dx = -(bs.curve * ((pos % SEG) / SEG));
+    for (let n = n0; n < seg && road[n]; n++) { x += dx; dx += road[n].curve; }
+  } else {
+    z = PZ;
+  }
+  const k = DEPTH / z * W / 2;
+  return Math.abs(k * ((it.off - carPos) * RW + x)) - k * ITEM_SIZE / 100 * itemHalfUnits(it) - carWidth(W) * CAR_BODY_HALF;
+}
+
+/** True when the item visibly overlaps the car body (it is collected, or it hits the car). */
+export const touchesCar = (road: Segment[], pos: number, carPos: number, seg: number, it: RoadItem, W: number): boolean =>
+  carGap(road, pos, carPos, seg, it, W) < 0;
 
 export type QuadKind = 'grass' | 'rumble' | 'road' | 'lane' | 'finish';
 /** A screen trapezoid: bottom edge centred at x1 on y1 with half width w1, top edge at x2 / y2 / w2. */
@@ -347,7 +388,7 @@ export const raceStep: StepModule = {
       const rc = arena.getBoundingClientRect();
       const m = measure(arena); // H is the VISIBLE height: the stage may run below the screen edge
       W = m.w; H = m.h; left = rc.left;
-      carW = Math.min(W * 0.26, 230);
+      carW = carWidth(W);
       scenery.setAttribute('viewBox', `0 0 ${W} ${H}`);
       grad.setAttribute('y2', String(H * 0.6));
       sky.setAttribute('width', String(W));
@@ -506,7 +547,7 @@ export const raceStep: StepModule = {
       const s = road[i];
       if (!s) return;
       for (const it of s.items) {
-        if (it.dead || Math.abs(it.off - carPos) >= HIT || state !== 'play') continue;
+        if (it.dead || state !== 'play' || !touchesCar(road, pos, carPos, i, it, W)) continue;
         it.dead = true;
         if (it.target) { collect(it, i); continue; }
         slow = it.kind === 'cone' ? cfg.coneSlowSec : cfg.wrongSlowSec;

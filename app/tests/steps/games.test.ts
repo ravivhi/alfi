@@ -4,7 +4,7 @@ import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import type { StepContext, StepModule } from '../../src/steps/contract.ts';
 import type { StepResult } from '../../src/engine/types.ts';
 import { planeStep } from '../../src/steps/plane.ts';
-import { raceStep, LANES } from '../../src/steps/race.ts';
+import { raceStep, LANES, carWidth } from '../../src/steps/race.ts';
 import { moleStep } from '../../src/steps/mole.ts';
 import { matchStep, gridLayout, TEXTURES } from '../../src/steps/match.ts';
 import { REGISTRY } from '../../src/steps/registry.ts';
@@ -485,15 +485,17 @@ describe('race', () => {
     for (const el of all('[data-disc],[data-cone],[data-car],[data-leaf],[data-burst]')) expect(el.style.willChange, el.outerHTML.slice(0, 40)).toBe('transform');
   }, 60000);
 
-  it('collects the named letter by overlap at the car\'s segment (|off - carPos| < 0.3)', async () => {
+  it('collects the named letter only when it visibly overlaps the car body (owner 2026-11-22: no wider lane band)', async () => {
     const ac = new AbortController();
     start(raceStep, makeCtx('race', 3, ac.signal));
     await untilPlay();
+    // the car is drawn carWidth(390) wide (its drawing's box is 1.14 x that)
+    expect(parseFloat(one('[data-car]').style.width) / 1.14).toBeCloseTo(carWidth(390), 1);
     let goal: HTMLElement | undefined;
     for (let i = 0; i < 400 && !goal; i++) { goal = ahead(isTarget); if (!goal) await vi.advanceTimersByTimeAsync(50); }
     const lane = Number(goal!.dataset.lane), seg = Number(goal!.dataset.seg);
-    // park the car 0.2 beside the letter's lane centre: still overlapping
-    at('pointerdown', fingerAt(LANES[lane] + (lane === 2 ? -0.2 : 0.2)));
+    // park the car 0.12 beside the letter's lane centre: the drawn letter still overlaps the drawn car body
+    at('pointerdown', fingerAt(LANES[lane] + (lane === 2 ? -0.12 : 0.12)));
     let hitSeg = -1, hitX = NaN;
     for (let i = 0; i < 3000 && hitSeg < 0; i++) {
       await vi.advanceTimersByTimeAsync(16);
@@ -501,16 +503,17 @@ describe('race', () => {
     }
     expect(hitSeg).toBeGreaterThanOrEqual(seg);
     expect(hitSeg).toBeLessThanOrEqual(seg + 1);
-    expect(Math.abs(LANES[lane] - hitX)).toBeLessThan(0.3);
-    expect(Math.abs(LANES[lane] - hitX)).toBeGreaterThan(0.1);
+    expect(Math.abs(LANES[lane] - hitX)).toBeLessThan(0.15);
+    expect(Math.abs(LANES[lane] - hitX)).toBeGreaterThan(0.08);
     expect(said).toContain(NAME(T));
     expect(sfx).toContain('good');
     expect(all('[data-slot][data-full]')).toHaveLength(1);
-    // a car 0.31 from the next letter's lane centre (between two lanes) does not take it
+    // a car 0.24 from the next letter's lane centre does not take it: the old band (< 0.3) did, though the drawn letter
+    // and the drawn car body never meet that far apart (they meet at about 0.21 road units at the car's line)
     let next: HTMLElement | undefined;
     for (let i = 0; i < 400 && !next; i++) { next = ahead(isTarget, seg); if (!next) await vi.advanceTimersByTimeAsync(16); }
     const nl = Number(next!.dataset.lane), nseg = Number(next!.dataset.seg);
-    at('pointermove', fingerAt(LANES[nl] + (nl === 2 ? -0.31 : 0.31)));
+    at('pointermove', fingerAt(LANES[nl] + (nl === 2 ? -0.24 : 0.24)));
     for (let i = 0; i < 3000 && carSeg() <= nseg + 2; i++) await vi.advanceTimersByTimeAsync(16);
     expect(carSeg()).toBeGreaterThan(nseg);
     expect(next!.classList.contains('is-collected')).toBe(false);

@@ -1,8 +1,9 @@
 import { describe, it, expect } from 'vitest';
-import { addRoad, buildRoad, placeItems, roadFrame, createFrameBuf, SEG, PZ, LANES, ROAD_CURVES, ROAD_HILLS, CAR_BOTTOM_FRAC, HORIZON_FRAC } from '../../src/steps/race.ts';
-import type { Segment } from '../../src/steps/race.ts';
+import { addRoad, buildRoad, placeItems, roadFrame, createFrameBuf, carGap, touchesCar, carWidth, SEG, PZ, LANES, ROAD_CURVES, ROAD_HILLS, CAR_BOTTOM_FRAC, HORIZON_FRAC } from '../../src/steps/race.ts';
+import type { RoadItem, Segment } from '../../src/steps/race.ts';
+import { faceSize } from '../../src/steps/faces.ts';
 import { createSpawner } from '../../src/steps/gameKit.ts';
-import { profileFor } from '../../src/engine/profiles.ts';
+import { profileFor, RACE_MAX_SPEED } from '../../src/engine/profiles.ts';
 import { createRng } from '../../src/util/rng.ts';
 
 const W = 390, H = 600;
@@ -121,7 +122,7 @@ describe('race road model', () => {
     expect(top.items.find(d => d.item === behind)!.visible).toBe(true);
   });
 
-  it('placeItems: slots 13-20 segments apart (0.9 x the old 15-22) between 45 and length-220; never two targets in one slot; no two targets in a row (S1)', () => {
+  it('placeItems: slots 12-18 segments apart (0.9 x the 0.7 13-20, owner 2026-11-22) between 45 and length-220; never two targets in one slot; no two targets in a row (S1)', () => {
     const cfg = profileFor('3-5').race;
     let slotsAll = 0, cones = 0, seconds = 0;
     for (let seed = 1; seed <= 20; seed++) {
@@ -132,7 +133,7 @@ describe('race road model', () => {
       expect(slots[0].i).toBe(45);
       slots.forEach((s, k) => {
         expect(s.i).toBeLessThan(road.length - 220);
-        if (k) { expect(s.i - slots[k - 1].i).toBeGreaterThanOrEqual(13); expect(s.i - slots[k - 1].i).toBeLessThanOrEqual(20); }
+        if (k) { expect(s.i - slots[k - 1].i).toBeGreaterThanOrEqual(12); expect(s.i - slots[k - 1].i).toBeLessThanOrEqual(18); }
         expect(s.items.length).toBeLessThanOrEqual(2);
         expect(s.items.filter(it => it.target)).toHaveLength(s.items[0].target ? 1 : 0);
         s.items.forEach(it => { expect(it.off).toBe(LANES[it.lane]); if (it.target) expect(it.kind).toBe('letter'); });
@@ -176,22 +177,94 @@ describe('race road model', () => {
     }
   });
 
-  it('forward speed is 0.9 of the old 3200 and items still arrive at the old rate per second', () => {
+  it('owner 2026-11-22 (preview 0.7): forward speed is 0.9 of the 0.7 speed 2880, and items still arrive at the 0.7 rate per second over 60 s', () => {
+    // preview 0.7 values: 2880 per second, a slot every 13-20 segments (mean 16.5)
+    expect(RACE_MAX_SPEED).toBeCloseTo(0.9 * 2880, 6);
     for (const age of ['3-5', '6-8'] as const) {
       const cfg = profileFor(age).race;
-      expect(cfg.maxSpeed).toBeCloseTo(0.9 * 3200, 6);
+      expect(cfg.maxSpeed).toBeCloseTo(0.9 * 2880, 6);
+      expect(cfg.slotSegs).toEqual([12, 18]);
+      // simulated 60 s at full speed from the first slot: items reached per second, against the 0.7 rate
       let perSec = 0;
       const runs = 20;
       for (let seed = 1; seed <= runs; seed++) {
         const rng = createRng(seed);
         const road = buildRoad(rng);
         placeItems(road, rng, cfg, createSpawner({ lanes: 3, rng }));
-        const slots = road.filter(s => s.items.length).length;
-        perSec += slots / ((road.length - 265) * SEG / cfg.maxSpeed);
+        const from = 45 * SEG, to = from + cfg.maxSpeed * 60;
+        const reached = road.filter(s => s.items.length && s.i * SEG >= from && s.i * SEG < to).length;
+        perSec += reached / 60;
       }
       perSec /= runs;
-      const oldRate = 3200 / (18.5 * SEG);
-      expect(Math.abs(perSec / oldRate - 1)).toBeLessThan(0.05);
+      const rate07 = 2880 / (16.5 * SEG);
+      expect(Math.abs(perSec / rate07 - 1)).toBeLessThan(0.05);
+    }
+  });
+});
+
+describe('race collider (owner 2026-11-22: "i dont want to collect or hit obstacles the car did not actually touch visually")', () => {
+  // what is drawn, read off the art: the car body (wheels, roof bar) spans -50..50 of its 100-unit drawing (the shadow
+  // is not body); the cone's widest part is its base, x 10..90 of the 100-unit item box; a letter is its face disc
+  const cone = (off: number): RoadItem => ({ kind: 'cone', target: false, lane: 1, off, seq: 0, dead: false });
+  const letter = (off: number, scale: number): RoadItem => ({ kind: 'letter', target: true, lane: 1, off, seq: 1, dead: false, letter: 'ב', look: { bg: '#FFC928', ink: '#1D2742', scale } });
+  const halfUnits = (it: RoadItem): number => (it.kind === 'cone' ? 40 : faceSize(84, it.look!) / 2);
+  /** The gap between the drawn item's edge and the drawn car body's edge, measured on the drawn frame. */
+  const drawnGap = (road: Segment[], pos: number, carPos: number, it: RoadItem, W: number, H: number): number => {
+    const d = roadFrame(road, pos, carPos, W, H).items.find(x => x.item === it)!;
+    return Math.abs(d.x - W / 2) - d.size / 100 * halfUnits(it) - carWidth(W) / 2;
+  };
+
+  it('an item whose drawn edge is just outside the car body is not collected / hit; one overlapping by 3 px is (390x700, 800x400)', () => {
+    for (const [W, H] of [[390, 700], [800, 400]]) {
+      for (const mk of [() => cone(0.62), () => letter(0.62, 1.1), () => letter(0.62, 0.9), () => letter(-0.62, 1)]) {
+        const road: Segment[] = [];
+        addRoad(road, 0, 300, 0, 0, 0);
+        const it = mk();
+        road[10].items.push(it);
+        const pos = 10 * SEG - PZ; // the item stands on the car's line
+        const d0 = roadFrame(road, pos, 0, W, H).items.find(x => x.item === it)!;
+        const pxPerUnit = Math.abs(d0.x - W / 2) / Math.abs(it.off); // at the car's depth one road unit is W px
+        expect(pxPerUnit).toBeCloseTo(W, 6);
+        const reach = carWidth(W) / 2 + d0.size / 100 * halfUnits(it); // centre distance at which the edges meet
+        for (const [g, hit] of [[2, false], [0.5, false], [-3, true], [-30, true]] as const) {
+          const carPos = it.off - Math.sign(it.off) * (reach + g) / W;
+          expect(drawnGap(road, pos, carPos, it, W, H)).toBeCloseTo(g, 6);
+          expect(carGap(road, pos, carPos, 10, it, W)).toBeCloseTo(g, 6);
+          expect(touchesCar(road, pos, carPos, 10, it, W), `${W}x${H} ${it.kind} gap ${g}`).toBe(hit);
+        }
+        // the old lane band (|off - carPos| < 0.3) was wider than the car: 0.25 off-centre is not a touch any more
+        expect(touchesCar(road, pos, it.off - Math.sign(it.off) * 0.25, 10, it, W)).toBe(false);
+        // the car right on the item's lane takes it
+        expect(touchesCar(road, pos, it.off, 10, it, W)).toBe(true);
+      }
+    }
+  });
+
+  it('the test uses the item as drawn in that frame: on a curve and anywhere on the car segment it matches the drawn gap', () => {
+    const road: Segment[] = [];
+    addRoad(road, 10, 300, 10, 3, 0);
+    const it = letter(0, 1);
+    road[60].items.push(it);
+    for (const W of [390, 800]) {
+      for (const f of [0, 0.3, 0.7, 0.99]) {
+        const pos = 60 * SEG - PZ + f * SEG; // the car on segment 60 (z from PZ down to PZ - SEG)
+        expect(Math.floor((pos + PZ) / SEG)).toBe(60);
+        for (const carPos of [-0.3, -0.2, -0.1, 0, 0.12, 0.25]) {
+          expect(carGap(road, pos, carPos, 60, it, W)).toBeCloseTo(drawnGap(road, pos, carPos, it, W, 600), 6);
+        }
+      }
+    }
+  });
+
+  it('a segment the car passed within one long frame is judged as it stood on the car line', () => {
+    const road: Segment[] = [];
+    addRoad(road, 0, 300, 0, 0, 0);
+    const it = cone(0);
+    road[10].items.push(it);
+    const atLine = 10 * SEG - PZ;
+    const W = 390;
+    for (const carPos of [0, 0.1, 0.15, 0.2, 0.3]) {
+      expect(carGap(road, atLine + 1.5 * SEG, carPos, 10, it, W)).toBeCloseTo(carGap(road, atLine, carPos, 10, it, W), 6);
     }
   });
 });

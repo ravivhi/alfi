@@ -10,6 +10,17 @@ export interface LaneGame { targets: number; lanes: number; travelSec: number; s
  * a second item (a cone) with secondChance; a cone slows the car for coneSlowSec, a wrong letter for wrongSlowSec;
  * steerPerSec is the car's top sideways speed in road units per second (the lanes are 0.62 apart).
  */
+/**
+ * Owner 2026-11-22 (preview 0.7): "the race is still a bit too fast ... make it 10% slower" - forward speed x 0.9 again
+ * (preview 0.6: 3200, preview 0.7: 2880). Cruising speed is maxSpeed; the engine hum still uses speed / maxSpeed.
+ */
+export const RACE_MAX_SPEED = 2592;
+/**
+ * The item spacing along the road scales with the speed, so items reach the car at the same rate per second (the
+ * Task 30 rule): 13-20 segments (mean 16.5) -> 12-18 (mean 15, x 0.91 against the speed's x 0.9; whole segments).
+ */
+export const RACE_SLOT_SEGS: readonly [number, number] = [12, 18];
+
 export interface RaceGame {
   targets: number; timeSec: number; maxSpeed: number; slotSegs: [number, number]; coneChance: number; secondChance: number;
   coneSlowSec: number; wrongSlowSec: number; steerPerSec: number;
@@ -66,7 +77,7 @@ const PROFILES: Record<AgeBand, AgeProfile> = {
     checkpointChoices: 4, checkpointExtraReview: 1,
     traceTolerance: 40,
     plane: { targets: 5, lanes: 3, travelSec: 7, spawnGapSec: 2.4 },
-    race: { targets: 10, timeSec: 60, maxSpeed: 2880, slotSegs: [13, 20], coneChance: 0.2, secondChance: 0.3, coneSlowSec: 1.6, wrongSlowSec: 0.9, steerPerSec: 2.2 },
+    race: { targets: 10, timeSec: 60, maxSpeed: RACE_MAX_SPEED, slotSegs: [RACE_SLOT_SEGS[0], RACE_SLOT_SEGS[1]], coneChance: 0.2, secondChance: 0.3, coneSlowSec: 1.6, wrongSlowSec: 0.9, steerPerSec: 2.2 },
     mole: { targets: 4, rows: 3, cols: 3, upMs: [2600, 3600], downMs: [800, 1600], maxUp: 2 },
     match: { pairs: 6, rounds: 2 },
     jump: JUMP_OLD,
@@ -80,7 +91,7 @@ const PROFILES: Record<AgeBand, AgeProfile> = {
     checkpointChoices: 4, checkpointExtraReview: 2,
     traceTolerance: 30,
     plane: { targets: 6, lanes: 4, travelSec: 4.5, spawnGapSec: 1.5 },
-    race: { targets: 10, timeSec: 60, maxSpeed: 2880, slotSegs: [13, 20], coneChance: 0.2, secondChance: 0.3, coneSlowSec: 1.6, wrongSlowSec: 0.9, steerPerSec: 3.7 },
+    race: { targets: 10, timeSec: 60, maxSpeed: RACE_MAX_SPEED, slotSegs: [RACE_SLOT_SEGS[0], RACE_SLOT_SEGS[1]], coneChance: 0.2, secondChance: 0.3, coneSlowSec: 1.6, wrongSlowSec: 0.9, steerPerSec: 3.7 },
     mole: { targets: 5, rows: 3, cols: 3, upMs: [1600, 2600], downMs: [500, 1300], maxUp: 3 },
     match: { pairs: 6, rounds: 2 },
     jump: JUMP_OLD,
