@@ -1,6 +1,6 @@
 # Contributing to אלפי
 
-Thanks for helping! Changes on `main` are **not** live right away: the owner reviews them and then publishes to https://ravivh.com/alfi/ and the Android app. Please still **test before you push**, so `main` always stays in a releasable state.
+Thanks for helping! **Changes pushed to `main` go live right away**, within a couple of minutes, at https://ravivh.com/alfi/ and in the Android app that kids use. So **always test before you push**.
 
 ## How to contribute
 
@@ -17,7 +17,7 @@ Thanks for helping! Changes on `main` are **not** live right away: the owner rev
    ```
    Open the printed URL. Check on a phone-sized window too (DevTools → device toolbar).
 4. Open a **Pull Request** to `main` describing what changed and why.
-5. After merge, it goes live the next time the owner publishes.
+5. Once it's merged, it goes live automatically.
 
 ## Where things are
 
@@ -41,3 +41,4 @@ Thanks for helping! Changes on `main` are **not** live right away: the owner rev
 
 - Rebuild or publish the Android app. It loads the website, so merged web changes show up in the app on its next launch.
 - Touch `.well-known/assetlinks.json`. It lives in another repo.
+- Change `.github/workflows/` or the repo secrets. Publishing is set up by the owner.

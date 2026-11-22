@@ -16,11 +16,11 @@ Want to help? See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Deploying the web app
 
-Pushing to `main` does **not** publish anything by itself. The owner reviews the changes and then clicks **Run workflow** on [Sync alfi](https://github.com/ravivhi/guessingGame/actions/workflows/sync-alfi.yml) in [ravivhi/guessingGame](https://github.com/ravivhi/guessingGame). That pulls `web/` into its `alfi/` folder, and its GitHub Pages serves ravivh.com, live within a couple of minutes.
+**Every push to `main` that changes `web/` goes live automatically**, within a couple of minutes, on the website and in the Android app. `.github/workflows/publish.yml` asks [ravivhi/guessingGame](https://github.com/ravivhi/guessingGame) to run [Sync alfi](https://github.com/ravivhi/guessingGame/actions/workflows/sync-alfi.yml), which pulls `web/` into its `alfi/` folder; its GitHub Pages serves ravivh.com.
 
-Before publishing, check what changed since the last sync: the latest "alfi: sync ravivhi/alfi@<sha>" commit in guessingGame names the alfi commit it was synced from.
+To publish again without a code change: Actions → "Publish to ravivh.com/alfi" → Run workflow.
 
-This repo deliberately has no credentials for guessingGame, so collaborators here can only change the alfi game.
+The only credential here is the secret `GUESSINGGAME_DISPATCH_TOKEN`: a fine-grained token for guessingGame with only "Actions: Read and write". It can start workflows there but cannot read or change its code. It expires; when publishing fails with an auth error, create a new one and run `gh secret set GUESSINGGAME_DISPATCH_TOKEN -R ravivhi/alfi`.
 
 **Edit alfi here, never in guessingGame/alfi/.** That folder is overwritten on every deploy.
 
