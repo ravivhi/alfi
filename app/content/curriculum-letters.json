@@ -1,0 +1,19 @@
+{
+  "id": "letters-he",
+  "version": 1,
+  "bands": ["3-5", "6-8"],
+  "itemKinds": ["name", "sound"],
+  "units": [{ "id": "מ" }, { "id": "ל" }, { "id": "ב" }, { "id": "ת" }, { "id": "י" }, { "id": "צ" }],
+  "unitStations": {
+    "3-5": [{ "step": "meet" }, { "step": "find" }, { "step": "drive" }, { "step": "paint" }, { "step": "firstSound" }, { "step": "$allGames" }],
+    "6-8": [{ "step": "meet" }, { "step": "find" }, { "step": "drive" }, { "step": "paint" }, { "step": "firstSound" }, { "step": "$allGames" }]
+  },
+  "gameRotation": ["plane", "race", "mole", "match", "jump"],
+  "checkpoint": { "everyUnits": 3, "step": "checkpoint" },
+  "itemSteps": { "name": "find", "sound": "soundPick" },
+  "practice": {
+    "name": [{ "step": "find" }, { "step": "mole" }],
+    "sound": [{ "step": "soundPick" }, { "step": "firstSound" }]
+  },
+  "unitPractice": [{ "step": "find" }, { "step": "soundPick" }, { "step": "drive" }, { "step": "$game" }]
+}

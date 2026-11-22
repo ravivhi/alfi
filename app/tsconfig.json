@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "target": "ES2019",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "lib": ["ES2020", "DOM"],
+    "skipLibCheck": true
+  },
+  "include": ["src", "tests", "scripts"]
+}

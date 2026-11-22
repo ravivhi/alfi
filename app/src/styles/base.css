@@ -1,0 +1,9 @@
+@font-face{font-family:Rubik;font-style:normal;font-weight:300 900;font-display:swap;src:url(/fonts/rubik-hebrew.woff2) format('woff2');unicode-range:U+0307-0308,U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:Rubik;font-style:normal;font-weight:300 900;font-display:swap;src:url(/fonts/rubik-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+:root{--bgSky:#EAF5FF;--ink:#1D2742}
+body{margin:0;font-family:Rubik,sans-serif;background:var(--bgSky);color:var(--ink)}
+#app{min-height:100vh;min-height:100dvh}
+.pick-face{font-family:Rubik,sans-serif;font-weight:800}
+@keyframes alfi-pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+.pulse{animation:alfi-pulse 1s ease-in-out infinite}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation:none !important;transition:none !important}}
