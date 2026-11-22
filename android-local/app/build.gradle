@@ -1,0 +1,48 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.raviv.alfi.local'
+    compileSdk 34
+
+    defaultConfig {
+        // Own id, so it installs next to the Play Store version without replacing it.
+        applicationId 'com.raviv.alfi.local'
+        minSdk 24
+        targetSdk 34
+        versionCode 7
+        versionName '0.7-preview'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    sourceSets {
+        main {
+            // The game files are copied here by syncWeb (below), under assets/web/.
+            assets.srcDirs += "$buildDir/webassets"
+        }
+    }
+}
+
+dependencies {
+    implementation 'androidx.webkit:webkit:1.11.0'
+    implementation 'androidx.core:core:1.13.1'
+}
+
+// Copies the local game folder into the APK on every build, so the app always shows the current local files.
+def webDir = file(project.findProperty('alfiWebDir') ?: '../../app/dist')
+tasks.register('syncWeb', Sync) {
+    from webDir
+    into "$buildDir/webassets/web"
+}
+preBuild.dependsOn 'syncWeb'

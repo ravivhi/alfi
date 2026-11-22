@@ -1,0 +1,1724 @@
+[
+ {
+  "file": "lines/children.who.mp3",
+  "text": "מי משחק עכשיו? לוחצים על התמונה שלכם",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/map.next.mp3",
+  "text": "היום מכירים אות חדשה. לוחצים על התחנה הזוהרת",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/map.tomorrow.mp3",
+  "text": "להיום סיימנו. ממשיכים מחר!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/map.limit.mp3",
+  "text": "זמן המשחק של היום נגמר. ממשיכים מחר!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/map.complete.mp3",
+  "text": "כל האותיות של עכשיו נלמדו. עוד אותיות בקרוב!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/leave.ask.mp3",
+  "text": "רוצים לצאת?",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/meet.line__mem__0.mp3",
+  "text": "זאת האות מֵם. מָה, מָה, מָטוֹס!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/meet.line__mem__1.mp3",
+  "text": "זאת האות מֵם. מָה, מָה, מְכוֹנִית!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/meet.line__mem__2.mp3",
+  "text": "זאת האות מֵם. מָה, מָה, מַפְתֵּחַ!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/meet.line__mem__3.mp3",
+  "text": "זאת האות מֵם. מָה, מָה, מַשָּׂאִית!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/meet.line__lamed__0.mp3",
+  "text": "זאת האות לָמֶד. לָה, לָה, לֵב!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/meet.line__lamed__1.mp3",
+  "text": "זאת האות לָמֶד. לָה, לָה, לְטָאָה!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/meet.line__lamed__2.mp3",
+  "text": "זאת האות לָמֶד. לָה, לָה, לֶהָבָה!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/meet.line__bet__0.mp3",
+  "text": "זאת האות בֵּית. בָּה, בָּה, בָּנָנָה!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/meet.line__bet__1.mp3",
+  "text": "זאת האות בֵּית. בָּה, בָּה, בַּיִת!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/meet.line__bet__2.mp3",
+  "text": "זאת האות בֵּית. בָּה, בָּה, בֵּיצָה!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/meet.line__bet__3.mp3",
+  "text": "זאת האות בֵּית. בָּה, בָּה, בַּרְוָז!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/meet.line__tav__0.mp3",
+  "text": "זאת האות תָּו. תָּה, תָּה, תַּפּוּחַ!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/meet.line__tav__1.mp3",
+  "text": "זאת האות תָּו. תָּה, תָּה, תּוּת!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/meet.line__tav__2.mp3",
+  "text": "זאת האות תָּו. תָּה, תָּה, תִּירָס!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/meet.line__tav__3.mp3",
+  "text": "זאת האות תָּו. תָּה, תָּה, תַּרְנְגוֹל!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/meet.line__yod__0.mp3",
+  "text": "זאת האות יוֹד. יָה, יָה, יָד!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/meet.line__yod__1.mp3",
+  "text": "זאת האות יוֹד. יָה, יָה, יָרֵחַ!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/meet.line__yod__2.mp3",
+  "text": "זאת האות יוֹד. יָה, יָה, יוֹנָה!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/meet.line__yod__3.mp3",
+  "text": "זאת האות יוֹד. יָה, יָה, יֶלֶד!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/meet.line__tsadi__0.mp3",
+  "text": "זאת האות צָדִי. צָה, צָה, צָב!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/meet.line__tsadi__1.mp3",
+  "text": "זאת האות צָדִי. צָה, צָה, צִפּוֹר!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/meet.line__tsadi__2.mp3",
+  "text": "זאת האות צָדִי. צָה, צָה, צְפַרְדֵּעַ!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/meet.line__tsadi__3.mp3",
+  "text": "זאת האות צָדִי. צָה, צָה, צַלַּחַת!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/find.ask__mem.mp3",
+  "text": "איפה האות מֵם?",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/find.ask__lamed.mp3",
+  "text": "איפה האות לָמֶד?",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/find.ask__bet.mp3",
+  "text": "איפה האות בֵּית?",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/find.ask__tav.mp3",
+  "text": "איפה האות תָּו?",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/find.ask__yod.mp3",
+  "text": "איפה האות יוֹד?",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/find.ask__tsadi.mp3",
+  "text": "איפה האות צָדִי?",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/find.right__mem.mp3",
+  "text": "נכון! זאת מֵם",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/find.right__lamed.mp3",
+  "text": "נכון! זאת לָמֶד",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/find.right__bet.mp3",
+  "text": "נכון! זאת בֵּית",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/find.right__tav.mp3",
+  "text": "נכון! זאת תָּו",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/find.right__yod.mp3",
+  "text": "נכון! זאת יוֹד",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/find.right__tsadi.mp3",
+  "text": "נכון! זאת צָדִי",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/find.wrong__alef.mp3",
+  "text": "זאת אָלֶף. נסו שוב",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/find.wrong__bet.mp3",
+  "text": "זאת בֵּית. נסו שוב",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/find.wrong__gimel.mp3",
+  "text": "זאת גִּימֶל. נסו שוב",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/find.wrong__dalet.mp3",
+  "text": "זאת דָּלֶת. נסו שוב",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/find.wrong__he.mp3",
+  "text": "זאת הֵא. נסו שוב",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/find.wrong__vav.mp3",
+  "text": "זאת וָו. נסו שוב",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/find.wrong__zayin.mp3",
+  "text": "זאת זַיִן. נסו שוב",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/find.wrong__het.mp3",
+  "text": "זאת חֵית. נסו שוב",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/find.wrong__tet.mp3",
+  "text": "זאת טֵית. נסו שוב",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/find.wrong__yod.mp3",
+  "text": "זאת יוֹד. נסו שוב",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/find.wrong__kaf.mp3",
+  "text": "זאת כָּף. נסו שוב",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/find.wrong__lamed.mp3",
+  "text": "זאת לָמֶד. נסו שוב",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/find.wrong__mem.mp3",
+  "text": "זאת מֵם. נסו שוב",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/find.wrong__nun.mp3",
+  "text": "זאת נוּן. נסו שוב",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/find.wrong__samekh.mp3",
+  "text": "זאת סָמֶךְ. נסו שוב",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/find.wrong__ayin.mp3",
+  "text": "זאת עַיִן. נסו שוב",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/find.wrong__pe.mp3",
+  "text": "זאת פֵּא. נסו שוב",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/find.wrong__tsadi.mp3",
+  "text": "זאת צָדִי. נסו שוב",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/find.wrong__qof.mp3",
+  "text": "זאת קוֹף. נסו שוב",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/find.wrong__resh.mp3",
+  "text": "זאת רֵישׁ. נסו שוב",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/find.wrong__shin.mp3",
+  "text": "זאת שִׁין. נסו שוב",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/find.wrong__tav.mp3",
+  "text": "זאת תָּו. נסו שוב",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/soundPick.ask__mem.mp3",
+  "text": "איזו אות אומרת מָה?",
+  "rate": 0.75,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/soundPick.ask__lamed.mp3",
+  "text": "איזו אות אומרת לָה?",
+  "rate": 0.75,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/soundPick.ask__bet.mp3",
+  "text": "איזו אות אומרת בָּה?",
+  "rate": 0.75,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/soundPick.ask__tav.mp3",
+  "text": "איזו אות אומרת תָּה?",
+  "rate": 0.75,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/soundPick.ask__yod.mp3",
+  "text": "איזו אות אומרת יָה?",
+  "rate": 0.75,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/soundPick.ask__tsadi.mp3",
+  "text": "איזו אות אומרת צָה?",
+  "rate": 0.75,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/firstSound.ask__mem.mp3",
+  "text": "איזו מילה מתחילה בצליל מָה?",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/firstSound.ask__lamed.mp3",
+  "text": "איזו מילה מתחילה בצליל לָה?",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/firstSound.ask__bet.mp3",
+  "text": "איזו מילה מתחילה בצליל בָּה?",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/firstSound.ask__tav.mp3",
+  "text": "איזו מילה מתחילה בצליל תָּה?",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/firstSound.ask__yod.mp3",
+  "text": "איזו מילה מתחילה בצליל יָה?",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/firstSound.ask__tsadi.mp3",
+  "text": "איזו מילה מתחילה בצליל צָה?",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/firstSound.right__mem__0.mp3",
+  "text": "נכון! מָה, מָטוֹס",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/firstSound.right__mem__1.mp3",
+  "text": "נכון! מָה, מְכוֹנִית",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/firstSound.right__mem__2.mp3",
+  "text": "נכון! מָה, מַפְתֵּחַ",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/firstSound.right__mem__3.mp3",
+  "text": "נכון! מָה, מַשָּׂאִית",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/firstSound.right__lamed__0.mp3",
+  "text": "נכון! לָה, לֵב",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/firstSound.right__lamed__1.mp3",
+  "text": "נכון! לָה, לְטָאָה",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/firstSound.right__lamed__2.mp3",
+  "text": "נכון! לָה, לֶהָבָה",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/firstSound.right__bet__0.mp3",
+  "text": "נכון! בָּה, בָּנָנָה",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/firstSound.right__bet__1.mp3",
+  "text": "נכון! בָּה, בַּיִת",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/firstSound.right__bet__2.mp3",
+  "text": "נכון! בָּה, בֵּיצָה",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/firstSound.right__bet__3.mp3",
+  "text": "נכון! בָּה, בַּרְוָז",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/firstSound.right__tav__0.mp3",
+  "text": "נכון! תָּה, תַּפּוּחַ",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/firstSound.right__tav__1.mp3",
+  "text": "נכון! תָּה, תּוּת",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/firstSound.right__tav__2.mp3",
+  "text": "נכון! תָּה, תִּירָס",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/firstSound.right__tav__3.mp3",
+  "text": "נכון! תָּה, תַּרְנְגוֹל",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/firstSound.right__yod__0.mp3",
+  "text": "נכון! יָה, יָד",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/firstSound.right__yod__1.mp3",
+  "text": "נכון! יָה, יָרֵחַ",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/firstSound.right__yod__2.mp3",
+  "text": "נכון! יָה, יוֹנָה",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/firstSound.right__yod__3.mp3",
+  "text": "נכון! יָה, יֶלֶד",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/firstSound.right__tsadi__0.mp3",
+  "text": "נכון! צָה, צָב",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/firstSound.right__tsadi__1.mp3",
+  "text": "נכון! צָה, צִפּוֹר",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/firstSound.right__tsadi__2.mp3",
+  "text": "נכון! צָה, צְפַרְדֵּעַ",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/firstSound.right__tsadi__3.mp3",
+  "text": "נכון! צָה, צַלַּחַת",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/firstSound.wrong.mp3",
+  "text": "זה מתחיל בצליל אחר. נסו שוב",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/drive.ask__mem.mp3",
+  "text": "נוסעים על הכביש של מֵם, מהדגל הירוק עד הסוף!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/drive.ask__lamed.mp3",
+  "text": "נוסעים על הכביש של לָמֶד, מהדגל הירוק עד הסוף!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/drive.ask__bet.mp3",
+  "text": "נוסעים על הכביש של בֵּית, מהדגל הירוק עד הסוף!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/drive.ask__tav.mp3",
+  "text": "נוסעים על הכביש של תָּו, מהדגל הירוק עד הסוף!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/drive.ask__yod.mp3",
+  "text": "נוסעים על הכביש של יוֹד, מהדגל הירוק עד הסוף!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/drive.ask__tsadi.mp3",
+  "text": "נוסעים על הכביש של צָדִי, מהדגל הירוק עד הסוף!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/drive.back.mp3",
+  "text": "חוזרים לכביש",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/drive.next.mp3",
+  "text": "עכשיו מהדגל הירוק הבא",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/drive.done__mem.mp3",
+  "text": "יופי! נסענו על מֵם",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/drive.done__lamed.mp3",
+  "text": "יופי! נסענו על לָמֶד",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/drive.done__bet.mp3",
+  "text": "יופי! נסענו על בֵּית",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/drive.done__tav.mp3",
+  "text": "יופי! נסענו על תָּו",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/drive.done__yod.mp3",
+  "text": "יופי! נסענו על יוֹד",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/drive.done__tsadi.mp3",
+  "text": "יופי! נסענו על צָדִי",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/paint.ask__mem.mp3",
+  "text": "צובעים את האות מֵם. בוחרים צבע וצובעים בתוך האות",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/paint.ask__lamed.mp3",
+  "text": "צובעים את האות לָמֶד. בוחרים צבע וצובעים בתוך האות",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/paint.ask__bet.mp3",
+  "text": "צובעים את האות בֵּית. בוחרים צבע וצובעים בתוך האות",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/paint.ask__tav.mp3",
+  "text": "צובעים את האות תָּו. בוחרים צבע וצובעים בתוך האות",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/paint.ask__yod.mp3",
+  "text": "צובעים את האות יוֹד. בוחרים צבע וצובעים בתוך האות",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/paint.ask__tsadi.mp3",
+  "text": "צובעים את האות צָדִי. בוחרים צבע וצובעים בתוך האות",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/colour.red.mp3",
+  "text": "אדום",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/colour.blue.mp3",
+  "text": "כחול",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/colour.green.mp3",
+  "text": "ירוק",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/colour.yellow.mp3",
+  "text": "צהוב",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/colour.orange.mp3",
+  "text": "כתום",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/colour.purple.mp3",
+  "text": "סגול",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/colour.turquoise.mp3",
+  "text": "טורקיז",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/colour.brown.mp3",
+  "text": "חום",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/colour.burgundy.mp3",
+  "text": "בורדו",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/plane.ask__mem.mp3",
+  "text": "מפוצצים רק בלונים של מֵם!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/plane.ask__lamed.mp3",
+  "text": "מפוצצים רק בלונים של לָמֶד!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/plane.ask__bet.mp3",
+  "text": "מפוצצים רק בלונים של בֵּית!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/plane.ask__tav.mp3",
+  "text": "מפוצצים רק בלונים של תָּו!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/plane.ask__yod.mp3",
+  "text": "מפוצצים רק בלונים של יוֹד!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/plane.ask__tsadi.mp3",
+  "text": "מפוצצים רק בלונים של צָדִי!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/race.ask__mem.mp3",
+  "text": "אוספים את מֵם לפני שנגמר הזמן!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/race.ask__lamed.mp3",
+  "text": "אוספים את לָמֶד לפני שנגמר הזמן!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/race.ask__bet.mp3",
+  "text": "אוספים את בֵּית לפני שנגמר הזמן!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/race.ask__tav.mp3",
+  "text": "אוספים את תָּו לפני שנגמר הזמן!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/race.ask__yod.mp3",
+  "text": "אוספים את יוֹד לפני שנגמר הזמן!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/race.ask__tsadi.mp3",
+  "text": "אוספים את צָדִי לפני שנגמר הזמן!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/race.go.mp3",
+  "text": "יוצאים לדרך!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/race.finish.mp3",
+  "text": "הנה קו הסיום!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/race.timeUp.mp3",
+  "text": "נגמר הזמן!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/mole.ask__mem.mp3",
+  "text": "נוגעים רק בחפרפרות של מֵם!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/mole.ask__lamed.mp3",
+  "text": "נוגעים רק בחפרפרות של לָמֶד!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/mole.ask__bet.mp3",
+  "text": "נוגעים רק בחפרפרות של בֵּית!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/mole.ask__tav.mp3",
+  "text": "נוגעים רק בחפרפרות של תָּו!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/mole.ask__yod.mp3",
+  "text": "נוגעים רק בחפרפרות של יוֹד!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/mole.ask__tsadi.mp3",
+  "text": "נוגעים רק בחפרפרות של צָדִי!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/match.ask1.mp3",
+  "text": "מוצאים שתי אותיות זהות",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/match.ask2__tet.mp3",
+  "text": "עכשיו יש גם טֵית. מוצאים זוגות זהים",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/match.ask2__qof.mp3",
+  "text": "עכשיו יש גם קוֹף. מוצאים זוגות זהים",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/match.ask2__kaf.mp3",
+  "text": "עכשיו יש גם כָּף. מוצאים זוגות זהים",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/match.ask2__het.mp3",
+  "text": "עכשיו יש גם חֵית. מוצאים זוגות זהים",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/match.ask2__vav.mp3",
+  "text": "עכשיו יש גם וָו. מוצאים זוגות זהים",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/match.ask2__ayin.mp3",
+  "text": "עכשיו יש גם עַיִן. מוצאים זוגות זהים",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/jump.ask__mem.mp3",
+  "text": "קופצים ואוספים רק את מֵם!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/jump.ask__lamed.mp3",
+  "text": "קופצים ואוספים רק את לָמֶד!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/jump.ask__bet.mp3",
+  "text": "קופצים ואוספים רק את בֵּית!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/jump.ask__tav.mp3",
+  "text": "קופצים ואוספים רק את תָּו!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/jump.ask__yod.mp3",
+  "text": "קופצים ואוספים רק את יוֹד!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/jump.ask__tsadi.mp3",
+  "text": "קופצים ואוספים רק את צָדִי!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/jump.door.mp3",
+  "text": "הדלת נפתחה! רוצו לדלת",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/jump.level.mp3",
+  "text": "השלב הושלם! ממשיכים לשלב הבא",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/jump.noLives.mp3",
+  "text": "אוי! נגמרו הלבבות",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/checkpoint.intro.mp3",
+  "text": "נקודת בדיקה! בודקים מה זוכרים",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/warmup.intro.mp3",
+  "text": "מתחממים!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/practice.intro.mp3",
+  "text": "מתרגלים עוד קצת",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/step.next.mp3",
+  "text": "לוחצים על החץ הירוק",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/end.great.mp3",
+  "text": "כל הכבוד!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/end.sticker.mp3",
+  "text": "מדבקה חדשה נכנסה למפה.",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/end.bye.mp3",
+  "text": "להתראות, נתראה בפעם הבאה!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/break.start.mp3",
+  "text": "זמן להפסקה קצרה! נחים קצת ומשחקים עוד מעט",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/break.end.mp3",
+  "text": "ההפסקה נגמרה, ממשיכים!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/result.stars3.mp3",
+  "text": "שלושה כוכבים!",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/result.choose.mp3",
+  "text": "רוצים עוד פעם, או ממשיכים?",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "lines/result.fail.mp3",
+  "text": "כמעט! בואו ננסה שוב",
+  "rate": 0.9,
+  "category": "lines",
+  "pitch": 1.05
+ },
+ {
+  "file": "letters/name_alef.mp3",
+  "text": "אָלֶף",
+  "rate": 0.9,
+  "category": "letters",
+  "pitch": 1.05
+ },
+ {
+  "file": "letters/name_bet.mp3",
+  "text": "בֵּית",
+  "rate": 0.9,
+  "category": "letters",
+  "pitch": 1.05
+ },
+ {
+  "file": "letters/name_gimel.mp3",
+  "text": "גִּימֶל",
+  "rate": 0.9,
+  "category": "letters",
+  "pitch": 1.05
+ },
+ {
+  "file": "letters/name_dalet.mp3",
+  "text": "דָּלֶת",
+  "rate": 0.9,
+  "category": "letters",
+  "pitch": 1.05
+ },
+ {
+  "file": "letters/name_he.mp3",
+  "text": "הֵא",
+  "rate": 0.9,
+  "category": "letters",
+  "pitch": 1.05
+ },
+ {
+  "file": "letters/name_vav.mp3",
+  "text": "וָו",
+  "rate": 0.9,
+  "category": "letters",
+  "pitch": 1.05
+ },
+ {
+  "file": "letters/name_zayin.mp3",
+  "text": "זַיִן",
+  "rate": 0.9,
+  "category": "letters",
+  "pitch": 1.05
+ },
+ {
+  "file": "letters/name_het.mp3",
+  "text": "חֵית",
+  "rate": 0.9,
+  "category": "letters",
+  "pitch": 1.05
+ },
+ {
+  "file": "letters/name_tet.mp3",
+  "text": "טֵית",
+  "rate": 0.9,
+  "category": "letters",
+  "pitch": 1.05
+ },
+ {
+  "file": "letters/name_yod.mp3",
+  "text": "יוֹד",
+  "rate": 0.9,
+  "category": "letters",
+  "pitch": 1.05
+ },
+ {
+  "file": "letters/name_kaf.mp3",
+  "text": "כָּף",
+  "rate": 0.9,
+  "category": "letters",
+  "pitch": 1.05
+ },
+ {
+  "file": "letters/name_lamed.mp3",
+  "text": "לָמֶד",
+  "rate": 0.9,
+  "category": "letters",
+  "pitch": 1.05
+ },
+ {
+  "file": "letters/name_mem.mp3",
+  "text": "מֵם",
+  "rate": 0.9,
+  "category": "letters",
+  "pitch": 1.05
+ },
+ {
+  "file": "letters/name_nun.mp3",
+  "text": "נוּן",
+  "rate": 0.9,
+  "category": "letters",
+  "pitch": 1.05
+ },
+ {
+  "file": "letters/name_samekh.mp3",
+  "text": "סָמֶךְ",
+  "rate": 0.9,
+  "category": "letters",
+  "pitch": 1.05
+ },
+ {
+  "file": "letters/name_ayin.mp3",
+  "text": "עַיִן",
+  "rate": 0.9,
+  "category": "letters",
+  "pitch": 1.05
+ },
+ {
+  "file": "letters/name_pe.mp3",
+  "text": "פֵּא",
+  "rate": 0.9,
+  "category": "letters",
+  "pitch": 1.05
+ },
+ {
+  "file": "letters/name_tsadi.mp3",
+  "text": "צָדִי",
+  "rate": 0.9,
+  "category": "letters",
+  "pitch": 1.05
+ },
+ {
+  "file": "letters/name_qof.mp3",
+  "text": "קוֹף",
+  "rate": 0.9,
+  "category": "letters",
+  "pitch": 1.05
+ },
+ {
+  "file": "letters/name_resh.mp3",
+  "text": "רֵישׁ",
+  "rate": 0.9,
+  "category": "letters",
+  "pitch": 1.05
+ },
+ {
+  "file": "letters/name_shin.mp3",
+  "text": "שִׁין",
+  "rate": 0.9,
+  "category": "letters",
+  "pitch": 1.05
+ },
+ {
+  "file": "letters/name_tav.mp3",
+  "text": "תָּו",
+  "rate": 0.9,
+  "category": "letters",
+  "pitch": 1.05
+ },
+ {
+  "file": "letters/sound_mem.mp3",
+  "text": "מָה",
+  "rate": 0.75,
+  "category": "letters",
+  "pitch": 1.05
+ },
+ {
+  "file": "letters/sound_lamed.mp3",
+  "text": "לָה",
+  "rate": 0.75,
+  "category": "letters",
+  "pitch": 1.05
+ },
+ {
+  "file": "letters/sound_bet.mp3",
+  "text": "בָּה",
+  "rate": 0.75,
+  "category": "letters",
+  "pitch": 1.05
+ },
+ {
+  "file": "letters/sound_tav.mp3",
+  "text": "תָּה",
+  "rate": 0.75,
+  "category": "letters",
+  "pitch": 1.05
+ },
+ {
+  "file": "letters/sound_yod.mp3",
+  "text": "יָה",
+  "rate": 0.75,
+  "category": "letters",
+  "pitch": 1.05
+ },
+ {
+  "file": "letters/sound_tsadi.mp3",
+  "text": "צָה",
+  "rate": 0.75,
+  "category": "letters",
+  "pitch": 1.05
+ },
+ {
+  "file": "words/mem_0.mp3",
+  "text": "מָטוֹס",
+  "rate": 0.9,
+  "category": "words",
+  "pitch": 1.05
+ },
+ {
+  "file": "words/mem_1.mp3",
+  "text": "מְכוֹנִית",
+  "rate": 0.9,
+  "category": "words",
+  "pitch": 1.05
+ },
+ {
+  "file": "words/mem_2.mp3",
+  "text": "מַפְתֵּחַ",
+  "rate": 0.9,
+  "category": "words",
+  "pitch": 1.05
+ },
+ {
+  "file": "words/mem_3.mp3",
+  "text": "מַשָּׂאִית",
+  "rate": 0.9,
+  "category": "words",
+  "pitch": 1.05
+ },
+ {
+  "file": "words/lamed_0.mp3",
+  "text": "לֵב",
+  "rate": 0.9,
+  "category": "words",
+  "pitch": 1.05
+ },
+ {
+  "file": "words/lamed_1.mp3",
+  "text": "לְטָאָה",
+  "rate": 0.9,
+  "category": "words",
+  "pitch": 1.05
+ },
+ {
+  "file": "words/lamed_2.mp3",
+  "text": "לֶהָבָה",
+  "rate": 0.9,
+  "category": "words",
+  "pitch": 1.05
+ },
+ {
+  "file": "words/bet_0.mp3",
+  "text": "בָּנָנָה",
+  "rate": 0.9,
+  "category": "words",
+  "pitch": 1.05
+ },
+ {
+  "file": "words/bet_1.mp3",
+  "text": "בַּיִת",
+  "rate": 0.9,
+  "category": "words",
+  "pitch": 1.05
+ },
+ {
+  "file": "words/bet_2.mp3",
+  "text": "בֵּיצָה",
+  "rate": 0.9,
+  "category": "words",
+  "pitch": 1.05
+ },
+ {
+  "file": "words/bet_3.mp3",
+  "text": "בַּרְוָז",
+  "rate": 0.9,
+  "category": "words",
+  "pitch": 1.05
+ },
+ {
+  "file": "words/tav_0.mp3",
+  "text": "תַּפּוּחַ",
+  "rate": 0.9,
+  "category": "words",
+  "pitch": 1.05
+ },
+ {
+  "file": "words/tav_1.mp3",
+  "text": "תּוּת",
+  "rate": 0.9,
+  "category": "words",
+  "pitch": 1.05
+ },
+ {
+  "file": "words/tav_2.mp3",
+  "text": "תִּירָס",
+  "rate": 0.9,
+  "category": "words",
+  "pitch": 1.05
+ },
+ {
+  "file": "words/tav_3.mp3",
+  "text": "תַּרְנְגוֹל",
+  "rate": 0.9,
+  "category": "words",
+  "pitch": 1.05
+ },
+ {
+  "file": "words/yod_0.mp3",
+  "text": "יָד",
+  "rate": 0.9,
+  "category": "words",
+  "pitch": 1.05
+ },
+ {
+  "file": "words/yod_1.mp3",
+  "text": "יָרֵחַ",
+  "rate": 0.9,
+  "category": "words",
+  "pitch": 1.05
+ },
+ {
+  "file": "words/yod_2.mp3",
+  "text": "יוֹנָה",
+  "rate": 0.9,
+  "category": "words",
+  "pitch": 1.05
+ },
+ {
+  "file": "words/yod_3.mp3",
+  "text": "יֶלֶד",
+  "rate": 0.9,
+  "category": "words",
+  "pitch": 1.05
+ },
+ {
+  "file": "words/tsadi_0.mp3",
+  "text": "צָב",
+  "rate": 0.9,
+  "category": "words",
+  "pitch": 1.05
+ },
+ {
+  "file": "words/tsadi_1.mp3",
+  "text": "צִפּוֹר",
+  "rate": 0.9,
+  "category": "words",
+  "pitch": 1.05
+ },
+ {
+  "file": "words/tsadi_2.mp3",
+  "text": "צְפַרְדֵּעַ",
+  "rate": 0.9,
+  "category": "words",
+  "pitch": 1.05
+ },
+ {
+  "file": "words/tsadi_3.mp3",
+  "text": "צַלַּחַת",
+  "rate": 0.9,
+  "category": "words",
+  "pitch": 1.05
+ },
+ {
+  "file": "words/distractor_0.mp3",
+  "text": "דָּג",
+  "rate": 0.9,
+  "category": "words",
+  "pitch": 1.05
+ },
+ {
+  "file": "words/distractor_1.mp3",
+  "text": "כַּדּוּר",
+  "rate": 0.9,
+  "category": "words",
+  "pitch": 1.05
+ },
+ {
+  "file": "words/distractor_2.mp3",
+  "text": "פִּיל",
+  "rate": 0.9,
+  "category": "words",
+  "pitch": 1.05
+ },
+ {
+  "file": "words/distractor_3.mp3",
+  "text": "גֶּזֶר",
+  "rate": 0.9,
+  "category": "words",
+  "pitch": 1.05
+ },
+ {
+  "file": "words/distractor_4.mp3",
+  "text": "נָחָשׁ",
+  "rate": 0.9,
+  "category": "words",
+  "pitch": 1.05
+ },
+ {
+  "file": "words/distractor_5.mp3",
+  "text": "חָתוּל",
+  "rate": 0.9,
+  "category": "words",
+  "pitch": 1.05
+ },
+ {
+  "file": "words/distractor_6.mp3",
+  "text": "סוּס",
+  "rate": 0.9,
+  "category": "words",
+  "pitch": 1.05
+ },
+ {
+  "file": "words/distractor_7.mp3",
+  "text": "רַכֶּבֶת",
+  "rate": 0.9,
+  "category": "words",
+  "pitch": 1.05
+ },
+ {
+  "file": "words/distractor_8.mp3",
+  "text": "שֶׁמֶשׁ",
+  "rate": 0.9,
+  "category": "words",
+  "pitch": 1.05
+ },
+ {
+  "file": "words/distractor_9.mp3",
+  "text": "עוּגָה",
+  "rate": 0.9,
+  "category": "words",
+  "pitch": 1.05
+ },
+ {
+  "file": "words/distractor_10.mp3",
+  "text": "דּוֹב",
+  "rate": 0.9,
+  "category": "words",
+  "pitch": 1.05
+ },
+ {
+  "file": "words/distractor_11.mp3",
+  "text": "כּוֹכָב",
+  "rate": 0.9,
+  "category": "words",
+  "pitch": 1.05
+ },
+ {
+  "file": "words/distractor_12.mp3",
+  "text": "פָּרָה",
+  "rate": 0.9,
+  "category": "words",
+  "pitch": 1.05
+ },
+ {
+  "file": "words/distractor_13.mp3",
+  "text": "גְּלִידָה",
+  "rate": 0.9,
+  "category": "words",
+  "pitch": 1.05
+ },
+ {
+  "file": "praise/praise_1.mp3",
+  "text": "יופי!",
+  "rate": 0.9,
+  "category": "praise",
+  "pitch": 1.05
+ },
+ {
+  "file": "praise/praise_2.mp3",
+  "text": "מעולה!",
+  "rate": 0.9,
+  "category": "praise",
+  "pitch": 1.05
+ },
+ {
+  "file": "praise/praise_3.mp3",
+  "text": "נהדר!",
+  "rate": 0.9,
+  "category": "praise",
+  "pitch": 1.05
+ },
+ {
+  "file": "praise/praise_4.mp3",
+  "text": "וואו!",
+  "rate": 0.9,
+  "category": "praise",
+  "pitch": 1.05
+ }
+]
