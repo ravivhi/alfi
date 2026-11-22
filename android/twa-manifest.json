@@ -20,8 +20,8 @@
     "path": "C:/Users/Raviv.Hilleli/signing-keys/alfi/android.keystore",
     "alias": "alfi"
   },
-  "appVersionName": "2",
-  "appVersionCode": 2,
+  "appVersionName": "1",
+  "appVersionCode": 1,
   "shortcuts": [],
   "generatorApp": "bubblewrap-cli",
   "webManifestUrl": "https://ravivh.com/alfi/manifest.json",
@@ -39,5 +39,5 @@
   "additionalTrustedOrigins": [],
   "retainedBundles": [],
   "displayOverride": [],
-  "appVersion": "2"
+  "appVersion": "1"
 }
