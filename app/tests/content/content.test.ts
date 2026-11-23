@@ -38,9 +38,9 @@ for (const file of ['letters-3-5.json', 'dev-fixture.json']) describe(file, () =
 });
 
 describe('fixture flags', () => {
-  it('draft is unreviewed and not a fixture', () => { const c = load('letters-3-5.json'); expect(c.reviewed).toBe(false); expect(c.fixture).toBeUndefined(); });
+  it('draft is reviewed and not a fixture', () => { const c = load('letters-3-5.json'); expect(c.reviewed).toBe(true); expect(c.fixture).toBeUndefined(); });
   it('dev fixture equals the draft plus fixture: true', () => { const { fixture, ...rest } = load('dev-fixture.json'); expect(fixture).toBe(true); expect(rest).toEqual(load('letters-3-5.json')); });
-  it('the app runs on the dev fixture until the owner check', () => expect(CONTENT.fixture).toBe(true));
+  it('the app runs on the reviewed content', () => { expect(CONTENT.reviewed).toBe(true); expect(CONTENT.fixture).toBeUndefined(); });
 });
 
 describe('letters-3-5.md (the owner table) equals the JSON', () => {

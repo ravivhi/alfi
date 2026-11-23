@@ -3,6 +3,10 @@ import { cardLines, lastCheckpointLine, letterCard, letterGrid, playMinutes, wea
 import { newChild } from '../../src/store/schema.ts';
 import type { ChildRecord } from '../../src/store/schema.ts';
 import { CONTENT } from '../../src/content/index.ts';
+import type { Curriculum } from '../../src/engine/types.ts';
+import curriculumJson from '../../content/curriculum-letters.json';
+
+const CURRICULUM = curriculumJson as unknown as Curriculum;
 
 const C = CONTENT;
 const fresh = () => newChild('נועה', 4, null, '2026-11-21', 'c0');
@@ -52,8 +56,11 @@ describe('parentText', () => {
     c.progress.stationsDone = ['u:מ#0', 'u:ל#0'];
     c.progress.focus = ['ל'];
     const g = letterGrid(c, C, undefined, '2026-11-21');
-    expect(g.filter(x => x.inPath).map(x => x.ch).join('')).toBe('בילמצת');
+    expect(g.filter(x => x.inPath).map(x => x.ch).join('')).toBe('אבגדהוזחטיכלמנסעפצקרשת');
     expect(g.filter(x => x.focus).map(x => x.ch)).toEqual(['ל']);
+    // a shorter path leaves the other letters out
+    const six = { ...CURRICULUM, units: CURRICULUM.units.slice(0, 6) };
+    expect(letterGrid(c, C, six, '2026-11-21').filter(x => x.inPath).map(x => x.ch).join('')).toBe('בילמצת');
   });
   it('letter card lines: level, recall days, success, confusions, last practised', () => {
     const c = fresh();

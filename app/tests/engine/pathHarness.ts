@@ -106,10 +106,27 @@ export function afterRetryPassed(s: PlannerInput, day: string): PlannerInput {
   return runDay(s, day, { failCheckpointItem: 'ל/name' }).state;
 }
 
-// The whole path finished on `lastDay` (6 units + 2 check-points take 7 sittings).
+// Sittings a fresh child needs to finish the whole path (one unit per sitting; a check-point joins the next unit's
+// sitting, and the last one sits alone when the last unit closes a block). Counted by a dry run, so it follows the
+// curriculum's unit count.
+let sittingsToFinish = 0;
+function sittingsForPath(): number {
+  if (sittingsToFinish) return sittingsToFinish;
+  const day = '2026-01-01';
+  let s = fresh(day);
+  const used = { wrong: false };
+  for (let k = 1; k <= 100; k++) {
+    s = runDay(s, addDays(day, k - 1), {}, used).state;
+    if (isPathComplete(s.progress, expandPath(c, s.band))) return (sittingsToFinish = k);
+  }
+  throw new Error('sittingsForPath: path not complete after 100 sittings');
+}
+
+// The whole path finished on `lastDay`.
 export function allDone(lastDay: string): PlannerInput {
-  const first = addDays(lastDay, -6);
-  const r = playDays(fresh(first), first, 7);
+  const n = sittingsForPath();
+  const first = addDays(lastDay, -(n - 1));
+  const r = playDays(fresh(first), first, n);
   if (!isPathComplete(r.state.progress, expandPath(c, r.state.band))) throw new Error('allDone: path not complete');
   return r.state;
 }

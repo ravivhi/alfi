@@ -15,8 +15,8 @@ afterEach(() => { delete (window as unknown as { AlfiNative?: unknown }).AlfiNat
 
 describe('buildVersion', () => {
   it('is the bridge value when the app provides one', () => {
-    setBridge({ appVersion: () => '0.8-preview' });
-    expect(buildVersion()).toBe('0.8-preview');
+    setBridge({ appVersion: () => '0.9' });
+    expect(buildVersion()).toBe('0.9');
   });
   it('is the build value (package version) without a bridge', () => {
     expect(buildVersion()).toBe(pkg.version);
@@ -29,9 +29,9 @@ describe('buildVersion', () => {
     setBridge({ appVersion: () => { throw new Error('gone'); } });
     expect(buildVersion()).toBe(pkg.version);
   });
-  it('preview 0.8: the web build is 0.8.0 and the APK is versionName 0.8-preview, versionCode 8', () => {
-    expect(pkg.version).toBe('0.8.0');
-    expect(gradle).toMatch(/versionName '0\.8-preview'/);
-    expect(gradle).toMatch(/versionCode 8\s/);
+  it('0.9: the web build is 0.9.0 and the APK is versionName 0.9, versionCode 9', () => {
+    expect(pkg.version).toBe('0.9.0');
+    expect(gradle).toMatch(/versionName '0\.9'/);
+    expect(gradle).toMatch(/versionCode 9\s/);
   });
 });

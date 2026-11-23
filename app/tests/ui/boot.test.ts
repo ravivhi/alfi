@@ -118,7 +118,7 @@ describe('boot smoke', () => {
       const clock = { now: () => Date.UTC(2026, 10, 21, 9), today: () => '2026-11-21' };
       const kv = kvWith(1);
       const { router } = bootApp({ root, kv, native: null, now: 2, clock, audioDeps: { fetchIndex: async () => null } });
-      expect(root.querySelectorAll('.node').length).toBe(8);
+      expect(root.querySelectorAll('.node').length).toBe(29); // 22 letters + 7 check-points
       const next = root.querySelector('[aria-label="התחנה הבאה: האות מ"]') as HTMLElement;
       expect(next.classList.contains('sleeping')).toBe(false);
       // teaching steps flow on by themselves, so a step can come and go within one poll: record each as it mounts

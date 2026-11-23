@@ -8,19 +8,26 @@ const c = json as unknown as Curriculum;
 
 describe('curriculum', () => {
   it('letters curriculum is valid', () => expect(validateCurriculum(c, SLICE_STEPS)).toEqual([]));
-  it('expands to 6 units and 2 checkpoints, cp after units 3 and 6', () => expect(expandPath(c, '3-5').map(n => n.id)).toEqual(['u:מ','u:ל','u:ב','cp1','u:ת','u:י','u:צ','cp2']));
+  it('expands to 22 units and 7 checkpoints, cp after units 3, 6, ..., 21, unit 22 last', () => {
+    const order = ['מ','ל','ב','ת','י','צ','א','ס','ר','נ','ד','ק','פ','ש','ה','ו','ג','כ','ע','ח','ז','ט'];
+    const ids = order.flatMap((l, i) => (i + 1) % 3 === 0 ? ['u:' + l, 'cp' + (i + 1) / 3] : ['u:' + l]);
+    expect(ids.filter(x => x.startsWith('cp'))).toEqual(['cp1','cp2','cp3','cp4','cp5','cp6','cp7']);
+    expect(ids[ids.length - 1]).toBe('u:ט');
+    expect(expandPath(c, '3-5').map(n => n.id)).toEqual(ids);
+  });
   it('every unit has the 5 teaching stations (paint right after drive), then all 5 games, the game order rotated per unit', () => {
     const games = ['plane', 'race', 'mole', 'match', 'jump'];
     const units = expandPath(c, '3-5').filter(n => n.type === 'unit');
     units.forEach((n, i) => {
       expect(n.stations!.map(s => s.step)).toEqual(['meet', 'find', 'drive', 'paint', 'firstSound', ...games.slice(i % 5), ...games.slice(0, i % 5)]);
     });
-    expect(units.map(n => n.stations![5].step)).toEqual(['plane', 'race', 'mole', 'match', 'jump', 'plane']);
+    expect(units).toHaveLength(22);
+    expect(units.map(n => n.stations![5].step)).toEqual(Array.from({ length: 22 }, (_, i) => games[i % 5]));
   });
   it('every unit has paint right after drive', () => {
     for (const band of c.bands) {
       const units = expandPath(c, band).filter(n => n.type === 'unit');
-      expect(units).toHaveLength(6);
+      expect(units).toHaveLength(22);
       for (const n of units) {
         const steps = n.stations!.map(s => s.step);
         expect(steps[steps.indexOf('drive') + 1]).toBe('paint');
@@ -34,7 +41,7 @@ describe('curriculum', () => {
   it('$game still resolves to one game by rotation', () => {
     const one: Curriculum = { ...c, unitStations: { '3-5': [{ step: 'meet' }, { step: '$game' }], '6-8': [{ step: 'meet' }, { step: '$game' }] } };
     expect(validateCurriculum(one, SLICE_STEPS)).toEqual([]);
-    expect(expandPath(one, '3-5').filter(n => n.type === 'unit').map(n => n.stations!.map(s => s.step).join(','))).toEqual(['meet,plane', 'meet,race', 'meet,mole', 'meet,match', 'meet,jump', 'meet,plane']);
+    expect(expandPath(one, '3-5').filter(n => n.type === 'unit').map(n => n.stations!.map(s => s.step).join(','))).toEqual(Array.from({ length: 22 }, (_, i) => 'meet,' + ['plane', 'race', 'mole', 'match', 'jump'][i % 5]));
   });
   it('$allGames is allowed only in unit stations; the letter practice may use $game', () => {
     expect(validateCurriculum({ ...c, practice: { ...c.practice, name: [{ step: '$allGames' }] } }, SLICE_STEPS)).toContain('$allGames not allowed here');

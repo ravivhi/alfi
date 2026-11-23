@@ -3,7 +3,7 @@
   "version": 1,
   "bands": ["3-5", "6-8"],
   "itemKinds": ["name", "sound"],
-  "units": [{ "id": "מ" }, { "id": "ל" }, { "id": "ב" }, { "id": "ת" }, { "id": "י" }, { "id": "צ" }],
+  "units": [{ "id": "מ" }, { "id": "ל" }, { "id": "ב" }, { "id": "ת" }, { "id": "י" }, { "id": "צ" }, { "id": "א" }, { "id": "ס" }, { "id": "ר" }, { "id": "נ" }, { "id": "ד" }, { "id": "ק" }, { "id": "פ" }, { "id": "ש" }, { "id": "ה" }, { "id": "ו" }, { "id": "ג" }, { "id": "כ" }, { "id": "ע" }, { "id": "ח" }, { "id": "ז" }, { "id": "ט" }],
   "unitStations": {
     "3-5": [{ "step": "meet" }, { "step": "find" }, { "step": "drive" }, { "step": "paint" }, { "step": "firstSound" }, { "step": "$allGames" }],
     "6-8": [{ "step": "meet" }, { "step": "find" }, { "step": "drive" }, { "step": "paint" }, { "step": "firstSound" }, { "step": "$allGames" }]

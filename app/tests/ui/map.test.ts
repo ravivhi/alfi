@@ -107,12 +107,12 @@ describe('map', () => {
 
   it('shows every path node: done with a star, the next one, future ones and the check-points', () => {
     const root = mountedMap(childDoneToday());
-    expect(root.querySelectorAll('.node').length).toBe(8);
+    expect(root.querySelectorAll('.node').length).toBe(29); // 22 letters + 7 check-points
     expect(root.querySelector('[aria-label="מ - הושלם"]')).not.toBeNull();
     expect(root.querySelectorAll('.node-done .star-badge').length).toBe(1);
     expect(root.querySelector('[aria-label="התחנה הבאה: האות ל"]')).not.toBeNull();
     expect(root.querySelector('[aria-label="ב - עוד לא"]')).not.toBeNull();
-    expect(root.querySelectorAll('.node-checkpoint').length).toBe(2);
+    expect(root.querySelectorAll('.node-checkpoint').length).toBe(7);
     expect(root.querySelector('[aria-label="1 מדבקות"]')).not.toBeNull();
   });
 
@@ -123,7 +123,7 @@ describe('map', () => {
     c.progress = startParentSitting(plannerInputFor(c, TODAY, 1), 'י');
     playDay(c, TODAY);
     const root = mountedMap(c);
-    expect(root.querySelectorAll('.node').length).toBe(8);
+    expect(root.querySelectorAll('.node').length).toBe(29); // 22 letters + 7 check-points
     expect(root.querySelector('[aria-label="מ - הושלם"]')).not.toBeNull();
     expect(root.querySelector('[aria-label="ל - הושלם"]')).not.toBeNull();
     expect(root.querySelector('[aria-label="י - הושלם"]')).not.toBeNull();

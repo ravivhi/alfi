@@ -281,7 +281,9 @@ describe('parent-started sitting on a letter', () => {
     const cp2 = playedOf(d27).find(x => x.kind === 'checkpoint') as PlannedStep;
     expect(cp2.cpId).toBe('cp2');
     expect(cp2.items.slice(0, 3).map(i => parseItem(i).unit)).toEqual(['ב', 'ת', 'צ']);
-    expect(isPathComplete(d27.state.progress, expandPath(c, '3-5'))).toBe(true);
+    // the path goes on with the 7th letter in curriculum order
+    expect(playedOf(d27).find(x => x.step === 'meet')?.unitId).toBe(c.units[6].id);
+    expect(isPathComplete(d27.state.progress, expandPath(c, '3-5'))).toBe(false);
   });
   it('a parent sitting left halfway resumes on the next start the same day, without a warm-up; the next day it is gone', () => {
     const s0 = { ...afterUnits(2, '2026-11-22'), today: '2026-11-23' };
@@ -295,7 +297,7 @@ describe('parent-started sitting on a letter', () => {
   });
   it('a letter outside the path cannot start a sitting', () => {
     const s0 = afterUnits(1, '2026-11-21');
-    expect(startParentSitting(s0, 'א')).toBe(s0.progress);
+    expect(startParentSitting(s0, 'ך')).toBe(s0.progress); // a final form is never a unit of the path
   });
 });
 

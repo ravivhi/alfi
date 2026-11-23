@@ -1,5 +1,5 @@
-// The letters content the app runs on. Until the owner has reviewed the draft (Task 15) this is the dev fixture.
+// The letters content the app runs on: the owner-reviewed letters (the dev fixture mirrors it for tests).
 import type { LettersContent } from './schema.ts';
-import data from '../../content/dev-fixture.json';
+import data from '../../content/letters-3-5.json';
 
 export const CONTENT = data as LettersContent;

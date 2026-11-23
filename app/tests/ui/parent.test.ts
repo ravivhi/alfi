@@ -471,18 +471,18 @@ describe('letters: levels, card, marks, practise now', () => {
     expect(m.app.save.children[0].progress.focus).toEqual(['מ', 'ב', 'ת']);
     expect(m.root.querySelector('[data-focus-full]')).toBeNull();
   });
-  it('practise now starts a sitting on any letter of the path, met or not; a letter outside the path cannot', () => {
+  it('practise now starts a sitting on any letter of the path, met or not', () => {
+    // all 22 letters are in the path; a letter outside it (inPath false) is covered in parentText.test.ts
     const m = mounted({ setup: withLevels });
     cell(m.root, 'ב').click();
     startBtn(m.root).click();
     cell(m.root, 'צ').click();
     startBtn(m.root).click();
-    expect(m.calls).toEqual(['start:ב', 'start:צ']);
     cell(m.root, 'א').click();
-    expect(startBtn(m.root).disabled).toBe(true);
+    expect(startBtn(m.root).disabled).toBe(false);
     startBtn(m.root).click();
-    expect(m.calls).toEqual(['start:ב', 'start:צ']);
-    expect(card(m.root)!.textContent).toContain('האות עוד לא במסלול');
+    expect(m.calls).toEqual(['start:ב', 'start:צ', 'start:א']);
+    expect(card(m.root)!.textContent).not.toContain('האות עוד לא במסלול');
   });
 });
 
