@@ -53,6 +53,8 @@ export const PLACEHOLDERS = ['{name}', '{sound}', '{word}'];
 export const VOWEL_IDS = ['shva', 'hataf-segol', 'hataf-patach', 'hataf-kamatz', 'hiriq', 'tzere', 'segol', 'patach', 'kamatz', 'holam', 'kubutz', 'shuruk'] as const;
 
 const ALEFBET = 'אבגדהוזחטיכלמנסעפצקרשת';
+/** Letters per check-point group (curriculum-letters.json checkpoint.everyUnits). */
+export const CHECKPOINT_GROUP = 3;
 const FINALS = /[ךםןףץ]/;
 const LETTER = /[א-ת]/;
 const MARK_VOWEL: Record<string, string> = {
@@ -125,7 +127,14 @@ export function validateContent(c: LettersContent): string[] {
     }
   }
 
-  if (c.order?.length !== 6 || new Set(c.order).size !== 6) e.push('order must list six different letters');
+  if (c.order?.length !== 22 || new Set(c.order).size !== 22 || ![...ALEFBET].every(L => c.order.includes(L))) e.push('order must list the 22 letters once each');
+  // A check-point mixes the letters of one group: no look-alike or sound-alike pair may share a group.
+  for (let i = 0; i < (c.order ?? []).length; i += CHECKPOINT_GROUP) {
+    const g = c.order.slice(i, i + CHECKPOINT_GROUP);
+    for (const a of g) for (const b of g) {
+      if (a < b && ((c.lookAlikes?.[a] ?? []).includes(b) || (c.lookAlikes?.[b] ?? []).includes(a) || c.sameSound.some(s => s.includes(a) && s.includes(b)))) e.push(`order: ${a} and ${b} share a group`);
+    }
+  }
   for (const L of c.order ?? []) {
     const le = c.letters?.[L];
     if (!le) { e.push(`letters ${L}: missing`); continue; }
@@ -134,13 +143,14 @@ export function validateContent(c: LettersContent): string[] {
     if (le.words.length < 3 || le.words.length > 5) e.push(`letters ${L}: needs 3-5 picture words`);
     le.words.forEach((w, i) => { e.push(...checkWord(`letters ${L} word ${i}`, w)); if (w.first !== L) e.push(`letters ${L} word ${i}: starts with ${w.first}`); });
     if (le.strokes.length < 1 || le.strokes.length > 3 || le.strokes.some(s => !/^M\s/.test(s))) e.push(`letters ${L}: 1-3 strokes starting with M`);
+    if (le.strokes.some(s => (s.match(/-?\d+(\.\d+)?/g) ?? []).some(n => +n < 0 || +n > 300))) e.push(`letters ${L}: a stroke point outside the board`);
   }
   if (Object.keys(c.letters ?? {}).length !== (c.order ?? []).length) e.push('letters must hold exactly the letters in order');
 
-  // A distractor must not start with one of the six letters, nor with a letter that sounds like one of them.
-  const taken = new Set((c.order ?? []).flatMap(L => [L, ...c.sameSound.filter(g => g.includes(L)).flat()]));
+  // Every letter is on the path, so a distractor may start with any letter: the first-sound step itself skips words
+  // that start with the target or a letter that sounds like it (pickFirstSoundOptions).
   if ((c.distractorWords ?? []).length < 10) e.push('distractorWords needs at least 10 words');
-  (c.distractorWords ?? []).forEach((w, i) => { e.push(...checkWord(`distractor ${i}`, w)); if (taken.has(w.first)) e.push(`distractor ${i}: starts with a path sound (${w.first})`); });
+  (c.distractorWords ?? []).forEach((w, i) => e.push(...checkWord(`distractor ${i}`, w)));
 
   for (const [id, t] of Object.entries(c.lines ?? {})) {
     for (const p of t.match(/\{[^}]*\}/g) ?? []) if (!PLACEHOLDERS.includes(p)) e.push(`line ${id}: unknown placeholder ${p}`);

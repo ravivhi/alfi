@@ -21,9 +21,17 @@ const allTexts = (v: unknown, out: string[] = []): string[] => {
 for (const file of ['letters-3-5.json', 'dev-fixture.json']) describe(file, () => {
   const c = load(file);
   it('is valid', () => expect(validateContent(c)).toEqual([]));
-  it('has six letters in the proposed order', () => expect(c.order).toEqual(['מ','ל','ב','ת','י','צ']));
-  it('no two of the six are look-alikes or sound-alikes', () => { for (const a of c.order) for (const b of c.order) if (a !== b) { expect(c.lookAlikes[a]).not.toContain(b); expect(c.sameSound.some(g => g.includes(a) && g.includes(b))).toBe(false); } });
+  it('starts with the six and lists all 22 letters once', () => { expect(c.order.slice(0, 6)).toEqual(['מ','ל','ב','ת','י','צ']); expect([...c.order].sort()).toEqual([...'אבגדהוזחטיכלמנסעפצקרשת'].sort()); });
+  it('no look-alike or sound-alike pair in one group of three', () => { for (let i = 0; i < c.order.length; i += 3) { const g = c.order.slice(i, i + 3); for (const a of g) for (const b of g) if (a !== b) { expect(c.lookAlikes[a], `${a} ${b}`).not.toContain(b); expect(c.sameSound.some(s => s.includes(a) && s.includes(b)), `${a} ${b}`).toBe(false); } } });
   it('picture words: no final letters, emoji <= Unicode 9, first letter matches', () => { for (const L of c.order) { expect(c.letters[L].words.length).toBeGreaterThanOrEqual(3); for (const w of c.letters[L].words) { expect(w.word).not.toMatch(/[ךםןףץ]/); expect(w.emojiUnicode).toBeLessThanOrEqual(9); expect(w.first).toBe(L); } } });
+  it('first letter carries the taught sound mark', () => {
+    for (const L of c.order) for (const w of c.letters[L].words) {
+      const lead = (w.word.normalize('NFC').match(/^[א-ת][֑-ׇ]*/) ?? [''])[0];
+      if ('בכפ'.includes(L)) expect(lead, w.word).toContain('ּ');
+      if (L === 'ש') expect(lead, w.word).toContain('ׁ');
+      if (L === 'ו') expect(lead, w.word).not.toMatch(/[ֹּ]/);
+    }
+  });
   it('all texts are NFC', () => allTexts(c).forEach(t => expect(t).toBe(t.normalize('NFC'))));
   it('lines are gender-neutral (no masculine singular imperatives)', () => Object.values(c.lines).forEach(t => expect(t).not.toMatch(/(^|\s)(בוא|לחץ|מצא|שים|קום|תלחץ)(\s|$|[.!?,])/)));
   it('every line id the app uses exists', () => LINE_IDS.forEach(id => expect(c.lines[id], id).toBeTruthy()));
@@ -55,5 +63,7 @@ describe('validateContent catches errors', () => {
   it('an unknown placeholder', () => { const c = base(); c.lines['find.ask'] = 'איפה {letter}?'; expect(validateContent(c).length).toBeGreaterThan(0); });
   it('a stroke not starting with M', () => { const c = base(); c.letters['ל'].strokes = ['L 1 2']; expect(validateContent(c).length).toBeGreaterThan(0); });
   it('a same-sound letter listed as a look-alike', () => { const c = base(); c.lookAlikes['א'].push('ע'); expect(validateContent(c).length).toBeGreaterThan(0); });
+  it('a look-alike pair in one group of three', () => { const c = base(); c.order[1] = 'כ'; expect(validateContent(c).some(x => x.includes('group'))).toBe(true); });
+  it('a stroke point outside the board', () => { const c = base(); c.letters['ל'].strokes = ['M 10 10 L 320 10']; expect(validateContent(c).some(x => x.includes('outside the board'))).toBe(true); });
   it('wrong vowels for a word', () => { const c = base(); c.letters['ב'].words[0].vowels = ['hiriq']; expect(validateContent(c).length).toBeGreaterThan(0); });
 });

@@ -8,7 +8,23 @@
     "ב",
     "ת",
     "י",
-    "צ"
+    "צ",
+    "א",
+    "ס",
+    "ר",
+    "נ",
+    "ד",
+    "ק",
+    "פ",
+    "ש",
+    "ה",
+    "ו",
+    "ג",
+    "כ",
+    "ע",
+    "ח",
+    "ז",
+    "ט"
   ],
   "alphabet": {
     "א": {
@@ -586,6 +602,1471 @@
       "strokes": [
         "M 84 60 L 200 214 Q 210 240 180 240 L 74 240",
         "M 212 60 Q 214 118 158 136"
+      ]
+    },
+    "א": {
+      "glyph": "א",
+      "soundSay": "אָ",
+      "words": [
+        {
+          "word": "אַרְיֵה",
+          "plain": "אריה",
+          "emoji": "🦁",
+          "emojiUnicode": 8,
+          "first": "א",
+          "letters": [
+            "א",
+            "ר",
+            "י",
+            "ה"
+          ],
+          "vowels": [
+            "patach",
+            "shva",
+            "tzere"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "אֲבַטִּיחַ",
+          "plain": "אבטיח",
+          "emoji": "🍉",
+          "emojiUnicode": 6,
+          "first": "א",
+          "letters": [
+            "א",
+            "ב",
+            "ט",
+            "י",
+            "ח"
+          ],
+          "vowels": [
+            "hataf-patach",
+            "patach",
+            "hiriq"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "אַמְבּוּלַנְס",
+          "plain": "אמבולנס",
+          "emoji": "🚑",
+          "emojiUnicode": 6,
+          "first": "א",
+          "letters": [
+            "א",
+            "מ",
+            "ב",
+            "ו",
+            "ל",
+            "נ",
+            "ס"
+          ],
+          "vowels": [
+            "patach",
+            "shva",
+            "shuruk"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "אֲנָנָס",
+          "plain": "אננס",
+          "emoji": "🍍",
+          "emojiUnicode": 6,
+          "first": "א",
+          "letters": [
+            "א",
+            "נ",
+            "ס"
+          ],
+          "vowels": [
+            "hataf-patach",
+            "kamatz"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "אַרְנָב",
+          "plain": "ארנב",
+          "emoji": "🐰",
+          "emojiUnicode": 6,
+          "first": "א",
+          "letters": [
+            "א",
+            "ר",
+            "נ",
+            "ב"
+          ],
+          "vowels": [
+            "patach",
+            "shva",
+            "kamatz"
+          ],
+          "band": "3-5"
+        }
+      ],
+      "strokes": [
+        "M 82 60 L 218 240",
+        "M 210 60 L 210 104 Q 210 150 160 162",
+        "M 128 122 Q 88 148 88 196 L 88 240"
+      ]
+    },
+    "ס": {
+      "glyph": "ס",
+      "soundSay": "סָה",
+      "words": [
+        {
+          "word": "סוּס",
+          "plain": "סוס",
+          "emoji": "🐎",
+          "emojiUnicode": 6,
+          "first": "ס",
+          "letters": [
+            "ס",
+            "ו"
+          ],
+          "vowels": [
+            "shuruk"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "סוּכָּרִיָּה",
+          "plain": "סוכריה",
+          "emoji": "🍬",
+          "emojiUnicode": 6,
+          "first": "ס",
+          "letters": [
+            "ס",
+            "ו",
+            "כ",
+            "ר",
+            "י",
+            "ה"
+          ],
+          "vowels": [
+            "shuruk",
+            "kamatz",
+            "hiriq"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "סֵפֶר",
+          "plain": "ספר",
+          "emoji": "📖",
+          "emojiUnicode": 6,
+          "first": "ס",
+          "letters": [
+            "ס",
+            "פ",
+            "ר"
+          ],
+          "vowels": [
+            "tzere",
+            "segol"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "סְנָאִי",
+          "plain": "סנאי",
+          "emoji": "🐿️",
+          "emojiUnicode": 7,
+          "first": "ס",
+          "letters": [
+            "ס",
+            "נ",
+            "א",
+            "י"
+          ],
+          "vowels": [
+            "shva",
+            "kamatz",
+            "hiriq"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "סִירָה",
+          "plain": "סירה",
+          "emoji": "⛵",
+          "emojiUnicode": 5.2,
+          "first": "ס",
+          "letters": [
+            "ס",
+            "י",
+            "ר",
+            "ה"
+          ],
+          "vowels": [
+            "hiriq",
+            "kamatz"
+          ],
+          "band": "3-5"
+        }
+      ],
+      "strokes": [
+        "M 76 60 L 184 60 Q 214 60 214 92 L 214 196 Q 214 240 170 240 L 128 240 Q 84 240 84 196 L 84 62"
+      ]
+    },
+    "ר": {
+      "glyph": "ר",
+      "soundSay": "רָה",
+      "words": [
+        {
+          "word": "רַכֶּבֶת",
+          "plain": "רכבת",
+          "emoji": "🚂",
+          "emojiUnicode": 6,
+          "first": "ר",
+          "letters": [
+            "ר",
+            "כ",
+            "ב",
+            "ת"
+          ],
+          "vowels": [
+            "patach",
+            "segol"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "רוֹבּוֹט",
+          "plain": "רובוט",
+          "emoji": "🤖",
+          "emojiUnicode": 8,
+          "first": "ר",
+          "letters": [
+            "ר",
+            "ו",
+            "ב",
+            "ט"
+          ],
+          "vowels": [
+            "holam"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "רָקֶטָה",
+          "plain": "רקטה",
+          "emoji": "🚀",
+          "emojiUnicode": 6,
+          "first": "ר",
+          "letters": [
+            "ר",
+            "ק",
+            "ט",
+            "ה"
+          ],
+          "vowels": [
+            "kamatz",
+            "segol"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "רַמְזוֹר",
+          "plain": "רמזור",
+          "emoji": "🚦",
+          "emojiUnicode": 6,
+          "first": "ר",
+          "letters": [
+            "ר",
+            "מ",
+            "ז",
+            "ו"
+          ],
+          "vowels": [
+            "patach",
+            "shva",
+            "holam"
+          ],
+          "band": "3-5"
+        }
+      ],
+      "strokes": [
+        "M 80 60 L 168 60 Q 206 60 206 98 L 206 240"
+      ]
+    },
+    "נ": {
+      "glyph": "נ",
+      "soundSay": "נָה",
+      "words": [
+        {
+          "word": "נָמֵר",
+          "plain": "נמר",
+          "emoji": "🐆",
+          "emojiUnicode": 6,
+          "first": "נ",
+          "letters": [
+            "נ",
+            "מ",
+            "ר"
+          ],
+          "vowels": [
+            "kamatz",
+            "tzere"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "נָחָשׁ",
+          "plain": "נחש",
+          "emoji": "🐍",
+          "emojiUnicode": 6,
+          "first": "נ",
+          "letters": [
+            "נ",
+            "ח",
+            "ש"
+          ],
+          "vowels": [
+            "kamatz"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "נֵר",
+          "plain": "נר",
+          "emoji": "🕯️",
+          "emojiUnicode": 7,
+          "first": "נ",
+          "letters": [
+            "נ",
+            "ר"
+          ],
+          "vowels": [
+            "tzere"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "נַעַל",
+          "plain": "נעל",
+          "emoji": "👟",
+          "emojiUnicode": 6,
+          "first": "נ",
+          "letters": [
+            "נ",
+            "ע",
+            "ל"
+          ],
+          "vowels": [
+            "patach"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "נְמָלָה",
+          "plain": "נמלה",
+          "emoji": "🐜",
+          "emojiUnicode": 6,
+          "first": "נ",
+          "letters": [
+            "נ",
+            "מ",
+            "ל",
+            "ה"
+          ],
+          "vowels": [
+            "shva",
+            "kamatz"
+          ],
+          "band": "3-5"
+        }
+      ],
+      "strokes": [
+        "M 108 60 L 162 60 Q 182 60 182 80 L 182 240 L 98 240"
+      ]
+    },
+    "ד": {
+      "glyph": "ד",
+      "soundSay": "דָּה",
+      "words": [
+        {
+          "word": "דָּג",
+          "plain": "דג",
+          "emoji": "🐟",
+          "emojiUnicode": 6,
+          "first": "ד",
+          "letters": [
+            "ד",
+            "ג"
+          ],
+          "vowels": [
+            "kamatz"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "דּוֹב",
+          "plain": "דוב",
+          "emoji": "🐻",
+          "emojiUnicode": 6,
+          "first": "ד",
+          "letters": [
+            "ד",
+            "ו",
+            "ב"
+          ],
+          "vowels": [
+            "holam"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "דֶּלֶת",
+          "plain": "דלת",
+          "emoji": "🚪",
+          "emojiUnicode": 6,
+          "first": "ד",
+          "letters": [
+            "ד",
+            "ל",
+            "ת"
+          ],
+          "vowels": [
+            "segol"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "דְּבוֹרָה",
+          "plain": "דבורה",
+          "emoji": "🐝",
+          "emojiUnicode": 6,
+          "first": "ד",
+          "letters": [
+            "ד",
+            "ב",
+            "ו",
+            "ר",
+            "ה"
+          ],
+          "vowels": [
+            "shva",
+            "holam",
+            "kamatz"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "דֶּגֶל",
+          "plain": "דגל",
+          "emoji": "🚩",
+          "emojiUnicode": 6,
+          "first": "ד",
+          "letters": [
+            "ד",
+            "ג",
+            "ל"
+          ],
+          "vowels": [
+            "segol"
+          ],
+          "band": "3-5"
+        }
+      ],
+      "strokes": [
+        "M 228 60 L 72 60",
+        "M 176 60 L 176 240"
+      ]
+    },
+    "ק": {
+      "glyph": "ק",
+      "soundSay": "קָה",
+      "words": [
+        {
+          "word": "קוֹאָלָה",
+          "plain": "קואלה",
+          "emoji": "🐨",
+          "emojiUnicode": 6,
+          "first": "ק",
+          "letters": [
+            "ק",
+            "ו",
+            "א",
+            "ל",
+            "ה"
+          ],
+          "vowels": [
+            "holam",
+            "kamatz"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "קוּבִּיָּה",
+          "plain": "קוביה",
+          "emoji": "🎲",
+          "emojiUnicode": 6,
+          "first": "ק",
+          "letters": [
+            "ק",
+            "ו",
+            "ב",
+            "י",
+            "ה"
+          ],
+          "vowels": [
+            "shuruk",
+            "hiriq",
+            "kamatz"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "קֶשֶׁת",
+          "plain": "קשת",
+          "emoji": "🌈",
+          "emojiUnicode": 6,
+          "first": "ק",
+          "letters": [
+            "ק",
+            "ש",
+            "ת"
+          ],
+          "vowels": [
+            "segol"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "קַקְטוּס",
+          "plain": "קקטוס",
+          "emoji": "🌵",
+          "emojiUnicode": 6,
+          "first": "ק",
+          "letters": [
+            "ק",
+            "ט",
+            "ו",
+            "ס"
+          ],
+          "vowels": [
+            "patach",
+            "shva",
+            "shuruk"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "קָרוּסֶלָה",
+          "plain": "קרוסלה",
+          "emoji": "🎠",
+          "emojiUnicode": 6,
+          "first": "ק",
+          "letters": [
+            "ק",
+            "ר",
+            "ו",
+            "ס",
+            "ל",
+            "ה"
+          ],
+          "vowels": [
+            "kamatz",
+            "shuruk",
+            "segol"
+          ],
+          "band": "3-5"
+        }
+      ],
+      "strokes": [
+        "M 72 60 L 168 60 Q 214 60 214 128 Q 214 214 142 232",
+        "M 87 126 L 87 288"
+      ]
+    },
+    "פ": {
+      "glyph": "פ",
+      "soundSay": "פָּה",
+      "words": [
+        {
+          "word": "פִּיל",
+          "plain": "פיל",
+          "emoji": "🐘",
+          "emojiUnicode": 6,
+          "first": "פ",
+          "letters": [
+            "פ",
+            "י",
+            "ל"
+          ],
+          "vowels": [
+            "hiriq"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "פֶּרַח",
+          "plain": "פרח",
+          "emoji": "🌸",
+          "emojiUnicode": 6,
+          "first": "פ",
+          "letters": [
+            "פ",
+            "ר",
+            "ח"
+          ],
+          "vowels": [
+            "segol",
+            "patach"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "פִּיצָה",
+          "plain": "פיצה",
+          "emoji": "🍕",
+          "emojiUnicode": 6,
+          "first": "פ",
+          "letters": [
+            "פ",
+            "י",
+            "צ",
+            "ה"
+          ],
+          "vowels": [
+            "hiriq",
+            "kamatz"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "פָּרָה",
+          "plain": "פרה",
+          "emoji": "🐄",
+          "emojiUnicode": 6,
+          "first": "פ",
+          "letters": [
+            "פ",
+            "ר",
+            "ה"
+          ],
+          "vowels": [
+            "kamatz"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "פַּרְפַּר",
+          "plain": "פרפר",
+          "emoji": "🦋",
+          "emojiUnicode": 9,
+          "first": "פ",
+          "letters": [
+            "פ",
+            "ר"
+          ],
+          "vowels": [
+            "patach",
+            "shva"
+          ],
+          "band": "3-5"
+        }
+      ],
+      "strokes": [
+        "M 82 60 L 164 60 Q 214 60 214 110 L 214 190 Q 214 240 164 240 L 80 240",
+        "M 94 62 L 94 126 Q 94 152 120 152 L 134 152"
+      ]
+    },
+    "ש": {
+      "glyph": "ש",
+      "soundSay": "שָׁה",
+      "words": [
+        {
+          "word": "שֶׁמֶשׁ",
+          "plain": "שמש",
+          "emoji": "☀️",
+          "emojiUnicode": 1.1,
+          "first": "ש",
+          "letters": [
+            "ש",
+            "מ"
+          ],
+          "vowels": [
+            "segol"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "שׁוּעָל",
+          "plain": "שועל",
+          "emoji": "🦊",
+          "emojiUnicode": 9,
+          "first": "ש",
+          "letters": [
+            "ש",
+            "ו",
+            "ע",
+            "ל"
+          ],
+          "vowels": [
+            "shuruk",
+            "kamatz"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "שׁוֹקוֹלָד",
+          "plain": "שוקולד",
+          "emoji": "🍫",
+          "emojiUnicode": 6,
+          "first": "ש",
+          "letters": [
+            "ש",
+            "ו",
+            "ק",
+            "ל",
+            "ד"
+          ],
+          "vowels": [
+            "holam",
+            "kamatz"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "שׁוֹטֵר",
+          "plain": "שוטר",
+          "emoji": "👮",
+          "emojiUnicode": 6,
+          "first": "ש",
+          "letters": [
+            "ש",
+            "ו",
+            "ט",
+            "ר"
+          ],
+          "vowels": [
+            "holam",
+            "tzere"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "שַׁבְּלוּל",
+          "plain": "שבלול",
+          "emoji": "🐌",
+          "emojiUnicode": 6,
+          "first": "ש",
+          "letters": [
+            "ש",
+            "ב",
+            "ל",
+            "ו"
+          ],
+          "vowels": [
+            "patach",
+            "shva",
+            "shuruk"
+          ],
+          "band": "3-5"
+        }
+      ],
+      "strokes": [
+        "M 228 60 L 228 186 Q 228 240 174 240 L 126 240 Q 72 240 72 186 L 72 60",
+        "M 151 60 L 151 118 Q 151 162 84 166"
+      ]
+    },
+    "ה": {
+      "glyph": "ה",
+      "soundSay": "הָה",
+      "words": [
+        {
+          "word": "הַר",
+          "plain": "הר",
+          "emoji": "⛰️",
+          "emojiUnicode": 5.2,
+          "first": "ה",
+          "letters": [
+            "ה",
+            "ר"
+          ],
+          "vowels": [
+            "patach"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "הֶלִיקוֹפְּטֶר",
+          "plain": "הליקופטר",
+          "emoji": "🚁",
+          "emojiUnicode": 6,
+          "first": "ה",
+          "letters": [
+            "ה",
+            "ל",
+            "י",
+            "ק",
+            "ו",
+            "פ",
+            "ט",
+            "ר"
+          ],
+          "vowels": [
+            "segol",
+            "hiriq",
+            "holam",
+            "shva"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "הַמְבּוּרְגֶּר",
+          "plain": "המבורגר",
+          "emoji": "🍔",
+          "emojiUnicode": 6,
+          "first": "ה",
+          "letters": [
+            "ה",
+            "מ",
+            "ב",
+            "ו",
+            "ר",
+            "ג"
+          ],
+          "vowels": [
+            "patach",
+            "shva",
+            "shuruk",
+            "segol"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "הוֹדוּ",
+          "plain": "הודו",
+          "emoji": "🦃",
+          "emojiUnicode": 8,
+          "first": "ה",
+          "letters": [
+            "ה",
+            "ו",
+            "ד"
+          ],
+          "vowels": [
+            "holam",
+            "shuruk"
+          ],
+          "band": "3-5"
+        }
+      ],
+      "strokes": [
+        "M 74 60 L 170 60 Q 208 60 208 98 L 208 240",
+        "M 92 128 L 92 240"
+      ]
+    },
+    "ו": {
+      "glyph": "ו",
+      "soundSay": "וָה",
+      "words": [
+        {
+          "word": "וֶרֶד",
+          "plain": "ורד",
+          "emoji": "🌹",
+          "emojiUnicode": 6,
+          "first": "ו",
+          "letters": [
+            "ו",
+            "ר",
+            "ד"
+          ],
+          "vowels": [
+            "segol"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "וִי",
+          "plain": "וי",
+          "emoji": "✔️",
+          "emojiUnicode": 1.1,
+          "first": "ו",
+          "letters": [
+            "ו",
+            "י"
+          ],
+          "vowels": [
+            "hiriq"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "וֶסְפָּה",
+          "plain": "וספה",
+          "emoji": "🛵",
+          "emojiUnicode": 9,
+          "first": "ו",
+          "letters": [
+            "ו",
+            "ס",
+            "פ",
+            "ה"
+          ],
+          "vowels": [
+            "segol",
+            "shva",
+            "kamatz"
+          ],
+          "band": "3-5"
+        }
+      ],
+      "strokes": [
+        "M 130 60 L 158 60 Q 168 60 168 72 L 168 240"
+      ]
+    },
+    "ג": {
+      "glyph": "ג",
+      "soundSay": "גָּה",
+      "words": [
+        {
+          "word": "גָּמָל",
+          "plain": "גמל",
+          "emoji": "🐫",
+          "emojiUnicode": 6,
+          "first": "ג",
+          "letters": [
+            "ג",
+            "מ",
+            "ל"
+          ],
+          "vowels": [
+            "kamatz"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "גֶּזֶר",
+          "plain": "גזר",
+          "emoji": "🥕",
+          "emojiUnicode": 9,
+          "first": "ג",
+          "letters": [
+            "ג",
+            "ז",
+            "ר"
+          ],
+          "vowels": [
+            "segol"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "גִּיטָרָה",
+          "plain": "גיטרה",
+          "emoji": "🎸",
+          "emojiUnicode": 6,
+          "first": "ג",
+          "letters": [
+            "ג",
+            "י",
+            "ט",
+            "ר",
+            "ה"
+          ],
+          "vowels": [
+            "hiriq",
+            "kamatz"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "גְּלִידָה",
+          "plain": "גלידה",
+          "emoji": "🍦",
+          "emojiUnicode": 6,
+          "first": "ג",
+          "letters": [
+            "ג",
+            "ל",
+            "י",
+            "ד",
+            "ה"
+          ],
+          "vowels": [
+            "shva",
+            "hiriq",
+            "kamatz"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "גְּבִינָה",
+          "plain": "גבינה",
+          "emoji": "🧀",
+          "emojiUnicode": 8,
+          "first": "ג",
+          "letters": [
+            "ג",
+            "ב",
+            "י",
+            "נ",
+            "ה"
+          ],
+          "vowels": [
+            "shva",
+            "hiriq",
+            "kamatz"
+          ],
+          "band": "3-5"
+        }
+      ],
+      "strokes": [
+        "M 100 60 L 140 60 Q 158 60 162 78 L 190 240",
+        "M 178 168 Q 160 214 98 232"
+      ]
+    },
+    "כ": {
+      "glyph": "כ",
+      "soundSay": "כָּה",
+      "words": [
+        {
+          "word": "כַּדּוּר",
+          "plain": "כדור",
+          "emoji": "⚽",
+          "emojiUnicode": 5.2,
+          "first": "כ",
+          "letters": [
+            "כ",
+            "ד",
+            "ו",
+            "ר"
+          ],
+          "vowels": [
+            "patach",
+            "shuruk"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "כֶּלֶב",
+          "plain": "כלב",
+          "emoji": "🐕",
+          "emojiUnicode": 6,
+          "first": "כ",
+          "letters": [
+            "כ",
+            "ל",
+            "ב"
+          ],
+          "vowels": [
+            "segol"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "כּוֹכָב",
+          "plain": "כוכב",
+          "emoji": "⭐",
+          "emojiUnicode": 5.1,
+          "first": "כ",
+          "letters": [
+            "כ",
+            "ו",
+            "ב"
+          ],
+          "vowels": [
+            "holam",
+            "kamatz"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "כֶּתֶר",
+          "plain": "כתר",
+          "emoji": "👑",
+          "emojiUnicode": 6,
+          "first": "כ",
+          "letters": [
+            "כ",
+            "ת",
+            "ר"
+          ],
+          "vowels": [
+            "segol"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "כִּבְשָׂה",
+          "plain": "כבשה",
+          "emoji": "🐑",
+          "emojiUnicode": 6,
+          "first": "כ",
+          "letters": [
+            "כ",
+            "ב",
+            "ש",
+            "ה"
+          ],
+          "vowels": [
+            "hiriq",
+            "shva",
+            "kamatz"
+          ],
+          "band": "3-5"
+        }
+      ],
+      "strokes": [
+        "M 82 60 L 164 60 Q 214 60 214 110 L 214 190 Q 214 240 164 240 L 80 240"
+      ]
+    },
+    "ע": {
+      "glyph": "ע",
+      "soundSay": "עָ",
+      "words": [
+        {
+          "word": "עַכְבָּר",
+          "plain": "עכבר",
+          "emoji": "🐭",
+          "emojiUnicode": 6,
+          "first": "ע",
+          "letters": [
+            "ע",
+            "כ",
+            "ב",
+            "ר"
+          ],
+          "vowels": [
+            "patach",
+            "shva",
+            "kamatz"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "עַכָּבִישׁ",
+          "plain": "עכביש",
+          "emoji": "🕷️",
+          "emojiUnicode": 7,
+          "first": "ע",
+          "letters": [
+            "ע",
+            "כ",
+            "ב",
+            "י",
+            "ש"
+          ],
+          "vowels": [
+            "patach",
+            "kamatz",
+            "hiriq"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "עֲגָלָה",
+          "plain": "עגלה",
+          "emoji": "🛒",
+          "emojiUnicode": 9,
+          "first": "ע",
+          "letters": [
+            "ע",
+            "ג",
+            "ל",
+            "ה"
+          ],
+          "vowels": [
+            "hataf-patach",
+            "kamatz"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "עַגְבָנִיָּה",
+          "plain": "עגבניה",
+          "emoji": "🍅",
+          "emojiUnicode": 6,
+          "first": "ע",
+          "letters": [
+            "ע",
+            "ג",
+            "ב",
+            "נ",
+            "י",
+            "ה"
+          ],
+          "vowels": [
+            "patach",
+            "shva",
+            "kamatz",
+            "hiriq"
+          ],
+          "band": "3-5"
+        }
+      ],
+      "strokes": [
+        "M 210 60 L 210 160 Q 210 214 150 228 L 76 246",
+        "M 102 60 L 138 214"
+      ]
+    },
+    "ח": {
+      "glyph": "ח",
+      "soundSay": "חָה",
+      "words": [
+        {
+          "word": "חָתוּל",
+          "plain": "חתול",
+          "emoji": "🐈",
+          "emojiUnicode": 6,
+          "first": "ח",
+          "letters": [
+            "ח",
+            "ת",
+            "ו",
+            "ל"
+          ],
+          "vowels": [
+            "kamatz",
+            "shuruk"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "חֲזִיר",
+          "plain": "חזיר",
+          "emoji": "🐷",
+          "emojiUnicode": 6,
+          "first": "ח",
+          "letters": [
+            "ח",
+            "ז",
+            "י",
+            "ר"
+          ],
+          "vowels": [
+            "hataf-patach",
+            "hiriq"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "חָלָב",
+          "plain": "חלב",
+          "emoji": "🥛",
+          "emojiUnicode": 9,
+          "first": "ח",
+          "letters": [
+            "ח",
+            "ל",
+            "ב"
+          ],
+          "vowels": [
+            "kamatz"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "חָצִיל",
+          "plain": "חציל",
+          "emoji": "🍆",
+          "emojiUnicode": 6,
+          "first": "ח",
+          "letters": [
+            "ח",
+            "צ",
+            "י",
+            "ל"
+          ],
+          "vowels": [
+            "kamatz",
+            "hiriq"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "חוּלְצָה",
+          "plain": "חולצה",
+          "emoji": "👕",
+          "emojiUnicode": 6,
+          "first": "ח",
+          "letters": [
+            "ח",
+            "ו",
+            "ל",
+            "צ",
+            "ה"
+          ],
+          "vowels": [
+            "shuruk",
+            "shva",
+            "kamatz"
+          ],
+          "band": "3-5"
+        }
+      ],
+      "strokes": [
+        "M 90 60 L 170 60 Q 210 60 210 100 L 210 240",
+        "M 90 60 L 90 240"
+      ]
+    },
+    "ז": {
+      "glyph": "ז",
+      "soundSay": "זָה",
+      "words": [
+        {
+          "word": "זְאֵב",
+          "plain": "זאב",
+          "emoji": "🐺",
+          "emojiUnicode": 6,
+          "first": "ז",
+          "letters": [
+            "ז",
+            "א",
+            "ב"
+          ],
+          "vowels": [
+            "shva",
+            "tzere"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "זַחַל",
+          "plain": "זחל",
+          "emoji": "🐛",
+          "emojiUnicode": 6,
+          "first": "ז",
+          "letters": [
+            "ז",
+            "ח",
+            "ל"
+          ],
+          "vowels": [
+            "patach"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "זִיקּוּק",
+          "plain": "זיקוק",
+          "emoji": "🎆",
+          "emojiUnicode": 6,
+          "first": "ז",
+          "letters": [
+            "ז",
+            "י",
+            "ק",
+            "ו"
+          ],
+          "vowels": [
+            "hiriq",
+            "shuruk"
+          ],
+          "band": "3-5"
+        }
+      ],
+      "strokes": [
+        "M 200 60 L 100 60",
+        "M 148 60 L 148 240"
+      ]
+    },
+    "ט": {
+      "glyph": "ט",
+      "soundSay": "טָה",
+      "words": [
+        {
+          "word": "טַבַּעַת",
+          "plain": "טבעת",
+          "emoji": "💍",
+          "emojiUnicode": 6,
+          "first": "ט",
+          "letters": [
+            "ט",
+            "ב",
+            "ע",
+            "ת"
+          ],
+          "vowels": [
+            "patach"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "טֶלֶוִיזְיָה",
+          "plain": "טלויזיה",
+          "emoji": "📺",
+          "emojiUnicode": 6,
+          "first": "ט",
+          "letters": [
+            "ט",
+            "ל",
+            "ו",
+            "י",
+            "ז",
+            "ה"
+          ],
+          "vowels": [
+            "segol",
+            "hiriq",
+            "shva",
+            "kamatz"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "טְרַקְטוֹר",
+          "plain": "טרקטור",
+          "emoji": "🚜",
+          "emojiUnicode": 6,
+          "first": "ט",
+          "letters": [
+            "ט",
+            "ר",
+            "ק",
+            "ו"
+          ],
+          "vowels": [
+            "shva",
+            "patach",
+            "holam"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "טִיגְרִיס",
+          "plain": "טיגריס",
+          "emoji": "🐯",
+          "emojiUnicode": 6,
+          "first": "ט",
+          "letters": [
+            "ט",
+            "י",
+            "ג",
+            "ר",
+            "ס"
+          ],
+          "vowels": [
+            "hiriq",
+            "shva"
+          ],
+          "band": "3-5"
+        },
+        {
+          "word": "טִפָּה",
+          "plain": "טפה",
+          "emoji": "💧",
+          "emojiUnicode": 6,
+          "first": "ט",
+          "letters": [
+            "ט",
+            "פ",
+            "ה"
+          ],
+          "vowels": [
+            "hiriq",
+            "kamatz"
+          ],
+          "band": "3-5"
+        }
+      ],
+      "strokes": [
+        "M 146 98 Q 146 62 180 62 Q 212 62 212 98 L 212 196 Q 212 240 168 240 L 130 240 Q 86 240 86 196 L 86 60"
       ]
     }
   },
