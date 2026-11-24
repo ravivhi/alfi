@@ -1,0 +1,39 @@
+# Publishes web/ with this repo's own GitHub Pages: https://ravivh.com/alfi/
+# (ravivh.com is the custom domain of ravivhi/ravivhi.github.io, so every repo's Pages site
+# is served at ravivh.com/<repo>/.) Runs on every push to main that changes web/.
+name: Publish to ravivh.com/alfi (Pages)
+
+on:
+  push:
+    branches: [main]
+    paths: ['web/**']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: touch web/.nojekyll
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: web
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
