@@ -16,13 +16,9 @@ Want to help? See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Deploying the web app
 
-**Every push to `main` that changes `web/` goes live automatically**, within a couple of minutes, on the website and in the Android app. `.github/workflows/publish.yml` asks [ravivhi/guessingGame](https://github.com/ravivhi/guessingGame) to run [Sync alfi](https://github.com/ravivhi/guessingGame/actions/workflows/sync-alfi.yml), which pulls `web/` into its `alfi/` folder; its GitHub Pages serves ravivh.com.
+**Every push to `main` that changes `web/` goes live automatically**, within a couple of minutes, on the website and in the Android app. `.github/workflows/pages.yml` publishes `web/` with this repo's GitHub Pages. ravivh.com is the custom domain of [ravivhi/ravivhi.github.io](https://github.com/ravivhi/ravivhi.github.io), so this repo's own GitHub Pages site is served at ravivh.com/alfi/. No other repo is involved and no token is needed.
 
-To publish again without a code change: Actions → "Publish to ravivh.com/alfi" → Run workflow.
-
-The only credential here is the secret `GUESSINGGAME_DISPATCH_TOKEN`: a fine-grained token for guessingGame with only "Actions: Read and write". It can start workflows there but cannot read or change its code. It expires; when publishing fails with an auth error, create a new one and run `gh secret set GUESSINGGAME_DISPATCH_TOKEN -R ravivhi/alfi`.
-
-**Edit alfi here, never in guessingGame/alfi/.** That folder is overwritten on every deploy.
+To publish again without a code change: Actions → "Publish to ravivh.com/alfi (Pages)" → Run workflow.
 
 When you change cached files, bump the cache version in `web/sw.js` so installed copies update.
 
@@ -39,4 +35,4 @@ Passwords: `~/signing-keys/alfi/signing-secrets.txt` (keystore and passwords are
 
 - **Do not run `bubblewrap update`.** It regenerates the project from Bubblewrap's template and resets `targetSdkVersion` to 35 and androidbrowserhelper to 2.6.2. Play requires API 36.
 - For a new release, bump `versionCode`/`versionName` in `android/app/build.gradle` and `appVersionCode`/`appVersionName` in `android/twa-manifest.json`.
-- `.well-known/assetlinks.json` lives at the root of ravivh.com, so in guessingGame, not here.
+- `.well-known/assetlinks.json` lives at the root of ravivh.com, so in ravivhi/ravivhi.github.io, not here.
